@@ -84,7 +84,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenReservatio
             <div className="space-y-6">
               <div className="flex items-center gap-4 pb-6 border-b border-[#C5A46D]/15">
                 <img
-                  src="/images/bavarian/bavarian-logo.jpg"
+                  src="/images/bavarian/bavarian-logo.webp"
                   alt="The Bavarian Crest"
                   className="w-13 h-13 rounded-2xl object-cover border border-[#C5A46D]/40"
                 />

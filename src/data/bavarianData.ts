@@ -103,7 +103,7 @@ export const SIGNATURE_CARDS: SignatureCard[] = [
     subtitle: 'Sausages, schnitzel and traditional favourites.',
     description:
       'Munich white sausage with pretzel and mustard, hearty Currywurst, and grand 5-variety sausage platters.',
-    image: '/images/bavarian/munich-white-sausage.jpg',
+    image: '/images/bavarian/munich-white-sausage.webp',
     targetCategory: 'Sausages',
     highlights: ['Munich White Sausage', 'Currywurst', 'Sausage Platter'],
     isOfficialPhoto: true,
@@ -115,7 +115,7 @@ export const SIGNATURE_CARDS: SignatureCard[] = [
     subtitle: 'Steaks, ribs and grilled specialities.',
     description:
       'Slow-roasted honey BBQ and bacon-cheddar wrapped pork ribs, woodcutter steaks, and mixed grill platters.',
-    image: '/images/bavarian/bacon-cheddar-ribs.jpg',
+    image: '/images/bavarian/bacon-cheddar-ribs.webp',
     targetCategory: 'Pork Ribs',
     highlights: ['Bacon & Cheddar Ribs', 'Honey BBQ Ribs', 'Meat Mixed Grill'],
     isOfficialPhoto: true,
@@ -127,7 +127,7 @@ export const SIGNATURE_CARDS: SignatureCard[] = [
     subtitle: 'Pork knuckle, goulash, pasta and seafood.',
     description:
       'Whole crispy pork knuckle, slow-braised Australian lamb shank, beef goulash, and black truffle fettuccini.',
-    image: '/images/bavarian/roast-pork-belly.jpg',
+    image: '/images/bavarian/roast-pork-belly.webp',
     targetCategory: 'Main Courses',
     highlights: ['Pork Knuckle', 'Australian Lamb Shank', 'Beef Goulash'],
     isOfficialPhoto: true,
@@ -139,7 +139,7 @@ export const SIGNATURE_CARDS: SignatureCard[] = [
     subtitle: 'Refreshing beverages and pub favourites.',
     description:
       'Chilled dimpled Maßkrug steins brimming with golden draught beer, signature house cocktails, and espresso martinis.',
-    image: '/images/bavarian/bavarian-steins-cheers.jpg',
+    image: '/images/bavarian/bavarian-steins-cheers.webp',
     targetCategory: 'Beverages & Cocktails',
     highlights: ['Dimpled Beer Steins', 'Bavarian Ruby Citrus', 'Espresso Martini'],
     isOfficialPhoto: true,
@@ -156,7 +156,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Crisp-roasted chicken wings served with your choice of honey mustard or spicy buffalo sauce.',
     image:
-      'https://images.unsplash.com/photo-1606502973842-f64bc2785fe5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1606502973842-f64bc2785fe5?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     badge: 'Popular',
   },
   {
@@ -167,7 +167,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Warm oven-baked bread rolls brushed with roasted garlic butter and melted mozzarella.',
     image:
-      'https://images.unsplash.com/photo-1614398751058-eb2e0bf63e53?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1614398751058-eb2e0bf63e53?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
   },
   {
     id: 'starter-ham-rolls',
@@ -177,7 +177,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Savory pork or chicken ham rolls filled with chopped egg salad and topped with crisp shoestring potato.',
     image:
-      'https://images.unsplash.com/photo-1541529086526-db283c563270?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1541529086526-db283c563270?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
   },
   {
     id: 'starter-pork-meatballs',
@@ -187,7 +187,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Pan-seared seasoned pork meatballs served with traditional mustard sauce and bacon sauerkraut.',
     image:
-      'https://images.unsplash.com/photo-1638439430466-b2bb7fdc1d67?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1638439430466-b2bb7fdc1d67?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     badge: 'House Special',
   },
   {
@@ -198,7 +198,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Golden herb-crumbed brie fried until molten inside and accompanied by house chutney.',
     image:
-      'https://images.unsplash.com/photo-1637273484026-11d51fb64024?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1637273484026-11d51fb64024?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
   },
   {
     id: 'starter-cream-cheese-prawns',
@@ -208,7 +208,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Succulent prawns wrapped in bacon with herb cream cheese, served with roasted garlic aioli.',
     image:
-      'https://images.unsplash.com/photo-1625943558005-1a8aa87b1b66?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1625943558005-1a8aa87b1b66?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     badge: 'Chef’s Pick',
   },
 
@@ -221,7 +221,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Velvety slow-roasted vine tomato soup finished with fragrant basil oil.',
     image:
-      'https://images.unsplash.com/photo-1616689314353-046ee6021f56?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1616689314353-046ee6021f56?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
   },
   {
     id: 'soup-chicken-mushroom',
@@ -231,7 +231,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Rich country cream broth with tender chicken, sautéed mushrooms, and homemade noodles.',
     image:
-      'https://images.unsplash.com/photo-1527976746453-f363eac4d889?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1527976746453-f363eac4d889?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
   },
   {
     id: 'soup-beef-goulash',
@@ -241,7 +241,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Hearty Central European beef broth slow-simmered with tender beef cubes, paprika, and vegetables.',
     image:
-      'https://images.unsplash.com/photo-1780019676104-79da19c02d8f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1780019676104-79da19c02d8f?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     badge: 'Heritage Recipe',
   },
   {
@@ -252,7 +252,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Caramelised onions in a deep beef broth topped with a baked golden cheese crust.',
     image:
-      'https://images.unsplash.com/photo-1552298013-de2af4b94854?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1552298013-de2af4b94854?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
   },
 
   // ==================== SALADS (Uber Eats Verified) ====================
@@ -264,7 +264,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Oven-roasted seasonal vegetables and chickpeas finished with balsamic glaze, pomegranate, and yoghurt dressing.',
     image:
-      'https://images.unsplash.com/photo-1761315600943-d8a5bb0c499f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1761315600943-d8a5bb0c499f?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     badge: 'Vegetarian',
   },
   {
@@ -275,7 +275,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Tender baby spinach leaves tossed in citrus vinaigrette with a soft poached egg, herb croutons, and crispy bacon.',
     image:
-      'https://images.unsplash.com/photo-1540420773420-3366772f4999?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1540420773420-3366772f4999?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
   },
   {
     id: 'salad-classic-caesar',
@@ -285,7 +285,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Crisp romaine lettuce with anchovy and egg yolk dressing, grated parmesan, and crunchy herb croutons.',
     image:
-      'https://images.unsplash.com/photo-1550304943-4f24f54ddde9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1550304943-4f24f54ddde9?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
   },
   {
     id: 'salad-grilled-chicken-bacon-caesar',
@@ -295,7 +295,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Our signature Caesar salad topped with your choice of chargrilled chicken breast or smoky streaky bacon.',
     image:
-      'https://images.unsplash.com/photo-1773067752070-e1d3923caf71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1773067752070-e1d3923caf71?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     badge: 'Featured',
   },
 
@@ -307,7 +307,7 @@ export const MENU_ITEMS: MenuItem[] = [
     priceLkr: 3050,
     description:
       'Authentic Bavarian Weisswurst served in warm herb broth alongside a freshly baked pretzel and traditional mustard.',
-    image: '/images/bavarian/munich-white-sausage.jpg',
+    image: '/images/bavarian/munich-white-sausage.webp',
     isOfficialPhoto: true,
     badge: '1983 Signature',
   },
@@ -319,7 +319,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'German-style sausages smothered in homemade spiced curry sauce, served with braised red cabbage and fries.',
     image:
-      'https://images.unsplash.com/photo-1585325701165-351af916e581?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1585325701165-351af916e581?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     badge: 'German Icon',
   },
   {
@@ -330,7 +330,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Two pan-seared pork or chicken sausages served over warm barrel sauerkraut with German mustard.',
     image:
-      'https://images.unsplash.com/photo-1551135020-39e4ca508d9b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1551135020-39e4ca508d9b?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     badge: 'Featured',
   },
   {
@@ -341,7 +341,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'A grand assortment of 5 German sausage varieties accompanied by braised red cabbage, sauerkraut, and potato salad.',
     image:
-      'https://images.unsplash.com/photo-1544025162-d76694265947?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1544025162-d76694265947?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     badge: 'Sharing Platter',
   },
 
@@ -353,7 +353,7 @@ export const MENU_ITEMS: MenuItem[] = [
     priceLkr: 4470,
     description:
       'Slow-roasted individual pork ribs basted in a glossy caramelized honey barbecue glaze.',
-    image: '/images/bavarian/honey-bbq-ribs.jpg',
+    image: '/images/bavarian/honey-bbq-ribs.webp',
     isOfficialPhoto: true,
     badge: 'Popular',
   },
@@ -365,7 +365,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Slow-roasted individual pork ribs glazed with a fiery sriracha-garlic reduction.',
     image:
-      'https://images.unsplash.com/photo-1761315412952-a3a9e3ed06ff?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1761315412952-a3a9e3ed06ff?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     badge: 'Spicy Glaze',
   },
   {
@@ -375,7 +375,7 @@ export const MENU_ITEMS: MenuItem[] = [
     priceLkr: 5500,
     description:
       'Slow-roasted pork ribs wrapped in smoky streaky bacon and melted cheddar cheese.',
-    image: '/images/bavarian/bacon-cheddar-ribs.jpg',
+    image: '/images/bavarian/bacon-cheddar-ribs.webp',
     isOfficialPhoto: true,
     badge: 'Showstopper',
   },
@@ -389,7 +389,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Traditional house-made German potato dumplings served in a rich woodland mushroom ragu.',
     image:
-      'https://images.unsplash.com/photo-1551183053-bf91a1d81141?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1551183053-bf91a1d81141?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     badge: 'Traditional',
   },
   {
@@ -400,7 +400,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Tender chicken fillets braised with mushrooms and tarragon cream, served alongside homemade noodles.',
     image:
-      'https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
   },
   {
     id: 'main-fish-and-chips',
@@ -410,7 +410,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Crisp beer-battered white fish fillet served with golden fries, house tartar sauce, and lemon.',
     image:
-      'https://images.unsplash.com/photo-1667451417729-73e944a796a9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1667451417729-73e944a796a9?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
   },
   {
     id: 'main-chicken-cordon-bleu',
@@ -420,7 +420,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Crispy crumbed chicken breast filled with melted cheese and chicken ham or bacon, served with fries.',
     image:
-      'https://images.unsplash.com/photo-1599921841143-819065a55cc6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1599921841143-819065a55cc6?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
   },
   {
     id: 'main-pork-cordon-bleu',
@@ -430,7 +430,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Crispy golden pork escalope stuffed with cheese and pork ham or bacon, served with golden fries.',
     image:
-      'https://images.unsplash.com/photo-1560611588-163f295eb145?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1560611588-163f295eb145?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
   },
   {
     id: 'main-beef-goulash',
@@ -440,7 +440,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Slow-braised beef cooked with sweet paprika and vegetables, served over creamy mashed potato.',
     image:
-      'https://images.unsplash.com/photo-1743362818809-5291a1566ec1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1743362818809-5291a1566ec1?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     badge: 'Bavarian Classic',
   },
   {
@@ -451,7 +451,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Whole Australian lamb shank slow-braised in red wine reduction and served over creamy mashed potato.',
     image:
-      'https://images.unsplash.com/photo-1556269923-e4ef51d69638?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1556269923-e4ef51d69638?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     badge: 'Chef’s Reserve',
   },
   {
@@ -461,7 +461,7 @@ export const MENU_ITEMS: MenuItem[] = [
     priceLkr: 11200,
     description:
       'Boiled or crispy whole roasted Bavarian pork knuckle served with mashed potato, rich gravy, and braised red cabbage.',
-    image: '/images/bavarian/roast-pork-belly.jpg',
+    image: '/images/bavarian/roast-pork-belly.webp',
     isOfficialPhoto: true,
     badge: 'Bavarian Feast',
   },
@@ -475,7 +475,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Hand-crumbed golden chicken schnitzel pan-fried until crisp and served with your choice of traditional side and sauce.',
     image:
-      'https://images.unsplash.com/photo-1640346060848-ad6921833885?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1640346060848-ad6921833885?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
   },
   {
     id: 'schnitzel-pork',
@@ -485,7 +485,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Classic tenderloin pork schnitzel in a crisp golden breadcrumb coat, served with your choice of side and sauce.',
     image:
-      'https://images.unsplash.com/photo-1560611588-163f295eb145?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1560611588-163f295eb145?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     badge: 'House Classic',
   },
 
@@ -498,7 +498,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Bavarian Käsespätzle-style homemade noodles baked golden with melted cheese and sweet caramelized onions.',
     image:
-      'https://images.unsplash.com/photo-1611280422374-fa3c1110c16e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1611280422374-fa3c1110c16e?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     badge: 'German Comfort',
   },
   {
@@ -509,7 +509,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Creamy baked macaroni folded into a rich cheese sauce and topped with a golden toasted herb crust.',
     image:
-      'https://images.unsplash.com/photo-1543339494-b4cd4f7ba686?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1543339494-b4cd4f7ba686?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
   },
   {
     id: 'pasta-black-truffle-fettuccine',
@@ -519,7 +519,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Ribbon fettuccini tossed in a fragrant black truffle, wild mushroom, and cream reduction.',
     image:
-      'https://images.unsplash.com/photo-1588013273468-315fd88ea34c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1588013273468-315fd88ea34c?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     badge: 'Vegetarian',
   },
   {
@@ -530,7 +530,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Slow-simmered beef and tomato ragù over al dente spaghetti, finished with grated parmesan.',
     image:
-      'https://images.unsplash.com/photo-1626300006988-42a927fd80ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1626300006988-42a927fd80ee?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
   },
   {
     id: 'pasta-grilled-chicken-fettuccine',
@@ -540,7 +540,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Chargrilled spice-rubbed chicken breast strips served over creamy fettuccini pasta.',
     image:
-      'https://images.unsplash.com/photo-1645112411341-6c4fd023714a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1645112411341-6c4fd023714a?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
   },
   {
     id: 'pasta-bacon-mushroom-leeks',
@@ -550,7 +550,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Smoky bacon, sautéed mushrooms, and crisp leeks folded into a velvety parmesan cream pasta.',
     image:
-      'https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
   },
   {
     id: 'pasta-spicy-garlic-prawn',
@@ -560,7 +560,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Al dente spaghetti tossed with ocean prawns, roasted garlic, chili flakes, and olive oil.',
     image:
-      'https://images.unsplash.com/photo-1556761223-4c4282c73f77?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1556761223-4c4282c73f77?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     badge: 'Featured',
   },
   {
@@ -571,7 +571,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Salmon, prawns, calamari, and sea clams simmered in white wine with ribbon fettuccini.',
     image:
-      'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     badge: 'Seafood Selection',
   },
 
@@ -584,7 +584,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Flame-grilled half boneless chicken served with your choice of side dish and signature sauce.',
     image:
-      'https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
   },
   {
     id: 'grill-modha-fillet',
@@ -594,7 +594,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Pan-seared local Modha (barramundi) fillet served with your choice of side dish and sauce.',
     image:
-      'https://images.unsplash.com/photo-1626203313658-886791f37e46?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1626203313658-886791f37e46?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     badge: 'Featured',
   },
   {
@@ -605,7 +605,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Tender chargrilled pork fillet medallion served with your choice of side dish and sauce.',
     image:
-      'https://images.unsplash.com/photo-1544025162-d76694265947?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1544025162-d76694265947?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
   },
   {
     id: 'grill-fillet-steak-250',
@@ -615,7 +615,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       '250g prime beef fillet steak grilled to order with your choice of side dish and sauce.',
     image:
-      'https://images.unsplash.com/photo-1600891964532-839fb6407dd1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1600891964532-839fb6407dd1?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
   },
   {
     id: 'grill-pork-loin-chops',
@@ -624,7 +624,7 @@ export const MENU_ITEMS: MenuItem[] = [
     priceLkr: 5600,
     description:
       'Thick-cut Bavarian pork loin chops from the grill, served with your choice of side dish and sauce.',
-    image: '/images/bavarian/roast-pork-belly.jpg',
+    image: '/images/bavarian/roast-pork-belly.webp',
     isOfficialPhoto: true,
     badge: 'Featured',
   },
@@ -636,7 +636,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Layered chargrilled steak stack crowned with sweet caramelized onions and melted cheese.',
     image:
-      'https://images.unsplash.com/photo-1558030006-450675393462?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1558030006-450675393462?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
   },
   {
     id: 'grill-woodcutter-steak',
@@ -646,7 +646,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Hearty 400-gram woodcutter steak topped with sautéed onions and woodland mushrooms.',
     image:
-      'https://images.unsplash.com/photo-1546964124-0cce460f38ef?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1546964124-0cce460f38ef?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     badge: '400g Cut',
   },
   {
@@ -657,7 +657,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Flame-grilled jumbo ocean prawns served with lemon butter, side dish, and sauce.',
     image:
-      'https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
   },
   {
     id: 'grill-norwegian-salmon',
@@ -667,7 +667,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Crisp-skinned imported Norwegian salmon fillet served with your choice of side and sauce.',
     image:
-      'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
   },
   {
     id: 'grill-surf-and-turf',
@@ -677,7 +677,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Prime chargrilled steak paired with grilled ocean prawns, served with side dish and sauce.',
     image:
-      'https://images.unsplash.com/photo-1544025162-d76694265947?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1544025162-d76694265947?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
   },
   {
     id: 'grill-meat-mixed-grill',
@@ -687,7 +687,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Sliced beef fillet, grilled chicken, pork chops, pork ribs, lamb skewers, sausages, bacon, and fried egg.',
     image:
-      'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     badge: 'Grand Feast',
   },
   {
@@ -698,7 +698,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Premium 250g young grass-fed beef tenderloin seared to perfection with side dish and sauce.',
     image:
-      'https://images.unsplash.com/photo-1600891964532-839fb6407dd1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1600891964532-839fb6407dd1?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     badge: 'Reserve Cut',
   },
   {
@@ -709,7 +709,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Chargrilled imported Australian lamb rack chops served with your choice of side and sauce.',
     image:
-      'https://images.unsplash.com/photo-1544025162-d76694265947?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1544025162-d76694265947?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     badge: 'Premium Cut',
   },
   {
@@ -720,7 +720,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       '300g richly marbled prime rib eye steak flame-grilled to order with side dish and sauce.',
     image:
-      'https://images.unsplash.com/photo-1558030006-450675393462?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1558030006-450675393462?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     badge: '300g Prime',
   },
 
@@ -732,7 +732,7 @@ export const MENU_ITEMS: MenuItem[] = [
     priceLkr: 2750,
     description:
       'Grilled pork patty, house bacon chili jam, cheddar cheese, and special burger sauce with natural chips.',
-    image: '/images/bavarian/pork-chili-jam-burger.jpg',
+    image: '/images/bavarian/pork-chili-jam-burger.webp',
     isOfficialPhoto: true,
     badge: 'House Burger',
   },
@@ -744,7 +744,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       '100% Australian Angus smashed beef patty, grilled onions, cheddar cheese, and special sauce with natural chips.',
     image:
-      'https://images.unsplash.com/photo-1598401863352-3de5501f4890?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1598401863352-3de5501f4890?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
   },
   {
     id: 'burger-lamb',
@@ -754,7 +754,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Grilled Australian lamb patty with Dijon mustard and caramelized onion, served with natural chips.',
     image:
-      'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
   },
   {
     id: 'burger-angus-double',
@@ -764,7 +764,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       '100% Australian Angus double patty, grilled onions, special burger sauce, cheddar cheese, lettuce, and tomato with natural chips.',
     image:
-      'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     badge: 'Double Angus',
   },
 
@@ -777,7 +777,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description:
       'Warm date and toffee sponge pudding served with rich caramel sauce and vanilla ice cream.',
     image:
-      'https://images.unsplash.com/photo-1648471690460-820ae9b83589?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1648471690460-820ae9b83589?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     badge: 'Uber Eats Favourite',
   },
 
@@ -789,7 +789,7 @@ export const MENU_ITEMS: MenuItem[] = [
     priceLabel: 'Dine-In Bar',
     description:
       'Served in our heavy dimpled glass steins emblazoned with The Bavarian crest.',
-    image: '/images/bavarian/bavarian-steins-cheers.jpg',
+    image: '/images/bavarian/bavarian-steins-cheers.webp',
     isOfficialPhoto: true,
     badge: 'Iconic Since 1983',
   },
@@ -800,7 +800,7 @@ export const MENU_ITEMS: MenuItem[] = [
     priceLabel: 'Dine-In Bar',
     description:
       'Jewel-toned house cocktail served over ice with fresh orange wheel, lemon spiral, and crest swizzle.',
-    image: '/images/bavarian/bavarian-ruby-cocktail.jpg',
+    image: '/images/bavarian/bavarian-ruby-cocktail.webp',
     isOfficialPhoto: true,
     badge: 'Bar Signature',
   },
@@ -811,7 +811,7 @@ export const MENU_ITEMS: MenuItem[] = [
     priceLabel: 'Dine-In Bar',
     description:
       'Chilled espresso shaken with coffee liqueur to a rich crema head, dusted with cocoa and coffee beans.',
-    image: '/images/bavarian/espresso-martini.jpg',
+    image: '/images/bavarian/espresso-martini.webp',
     isOfficialPhoto: true,
     badge: 'After-Dinner',
   },
@@ -826,7 +826,7 @@ export const EXPERIENCE_CHAPTERS: ExperienceChapter[] = [
     subtitle: 'An intimate sanctuary of polished mahogany, brass and warm pendant light.',
     description:
       'Step off Galle Face Terrace into a world shaped by over four decades of hospitality.',
-    image: '/images/bavarian/bavarian-bar-interior.jpg',
+    image: '/images/bavarian/bavarian-bar-interior.webp',
     detailNote: 'Polished hardwood bar & heritage crest panelling',
     isOfficialPhoto: true,
   },
@@ -838,8 +838,8 @@ export const EXPERIENCE_CHAPTERS: ExperienceChapter[] = [
     subtitle: 'Where frosted dimpled glassware meets classic European mixology.',
     description:
       'From heavy dimpled Maßkrug steins crowned with dense white foam to ruby-red citrus cocktails.',
-    image: '/images/bavarian/bavarian-steins-cheers.jpg',
-    secondaryImage: '/images/bavarian/bavarian-ruby-cocktail.jpg',
+    image: '/images/bavarian/bavarian-steins-cheers.webp',
+    secondaryImage: '/images/bavarian/bavarian-ruby-cocktail.webp',
     detailNote: 'Custom crest glassware & signature house pours',
     isOfficialPhoto: true,
   },
@@ -852,7 +852,7 @@ export const EXPERIENCE_CHAPTERS: ExperienceChapter[] = [
     description:
       'Every carved bar chair, solid wooden table and brass-accented fixture reflects traditional German tavern craftsmanship.',
     image:
-      'https://images.unsplash.com/photo-1779372178902-5d355e0dfe06?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1779372178902-5d355e0dfe06?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     detailNote: 'Solid carved wood seating & classic tavern proportions',
   },
   {
@@ -864,7 +864,7 @@ export const EXPERIENCE_CHAPTERS: ExperienceChapter[] = [
     description:
       'Our terrace seating pairs rustic wooden benches and greenery with the relaxed rhythm of Galle Face.',
     image:
-      'https://images.unsplash.com/photo-1786654735906-6e472c374c46?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080',
+      'https://images.unsplash.com/photo-1786654735906-6e472c374c46?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     detailNote: 'Open-air wooden benches & warm lantern atmosphere',
   },
   {
@@ -875,8 +875,8 @@ export const EXPERIENCE_CHAPTERS: ExperienceChapter[] = [
     subtitle: 'Four decades of family gatherings, celebrations and camaraderie.',
     description:
       'Whether gathering for honey-glazed ribs, Munich white sausages with pretzels, or a celebratory toast.',
-    image: '/images/bavarian/roast-pork-belly.jpg',
-    secondaryImage: '/images/bavarian/bacon-cheddar-ribs.jpg',
+    image: '/images/bavarian/roast-pork-belly.webp',
+    secondaryImage: '/images/bavarian/bacon-cheddar-ribs.webp',
     detailNote: 'Hearty portions crafted for shared table rituals',
     isOfficialPhoto: true,
   },
@@ -888,7 +888,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     title: 'Prost at The Bavarian',
     category: 'Drinks & Steins',
     caption: 'Signature dimpled glass steins emblazoned with The Bavarian gothic crest.',
-    image: '/images/bavarian/bavarian-steins-cheers.jpg',
+    image: '/images/bavarian/bavarian-steins-cheers.webp',
     spanClass: 'md:col-span-7 md:row-span-2',
     isOfficialPhoto: true,
   },
@@ -897,7 +897,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     title: 'Crispy Crackling Roast Pork',
     category: 'Signature Dishes',
     caption: 'Golden crackling pork belly served with braised red cabbage, sauerkraut and rich gravy.',
-    image: '/images/bavarian/roast-pork-belly.jpg',
+    image: '/images/bavarian/roast-pork-belly.webp',
     spanClass: 'md:col-span-5 md:row-span-1',
     isOfficialPhoto: true,
   },
@@ -906,7 +906,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     title: 'Munich White Sausage & Pretzel',
     category: 'Grill & Sausages',
     caption: 'Traditional poached Weisswurst in herb broth with warm pretzel and duo of mustards.',
-    image: '/images/bavarian/munich-white-sausage.jpg',
+    image: '/images/bavarian/munich-white-sausage.webp',
     spanClass: 'md:col-span-5 md:row-span-1',
     isOfficialPhoto: true,
   },
@@ -915,7 +915,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     title: 'The Bavarian Timber Bar',
     category: 'Interiors & Bar',
     caption: 'Warm mahogany panelling, overhead stemware, carved wooden stools and amber lamps.',
-    image: '/images/bavarian/bavarian-bar-interior.jpg',
+    image: '/images/bavarian/bavarian-bar-interior.webp',
     spanClass: 'md:col-span-6 md:row-span-2',
     isOfficialPhoto: true,
   },
@@ -924,7 +924,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     title: 'Bacon & Cheddar Wrapped Ribs',
     category: 'Grill & Sausages',
     caption: 'Flame-roasted pork ribs wrapped in smoky bacon and cheddar glaze.',
-    image: '/images/bavarian/bacon-cheddar-ribs.jpg',
+    image: '/images/bavarian/bacon-cheddar-ribs.webp',
     spanClass: 'md:col-span-6 md:row-span-1',
     isOfficialPhoto: true,
   },
@@ -933,7 +933,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     title: 'Signature Bavarian Cocktail',
     category: 'Drinks & Steins',
     caption: 'Ruby house cocktail garnished with fresh orange, lemon spiral and crest swizzle stick.',
-    image: '/images/bavarian/bavarian-ruby-cocktail.jpg',
+    image: '/images/bavarian/bavarian-ruby-cocktail.webp',
     spanClass: 'md:col-span-3 md:row-span-1',
     isOfficialPhoto: true,
   },
@@ -942,7 +942,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     title: 'Cocoa Dusted Espresso Martini',
     category: 'Drinks & Steins',
     caption: 'Velvety coffee cocktail topped with roasted beans and cocoa.',
-    image: '/images/bavarian/espresso-martini.jpg',
+    image: '/images/bavarian/espresso-martini.webp',
     spanClass: 'md:col-span-3 md:row-span-1',
     isOfficialPhoto: true,
   },
@@ -951,7 +951,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     title: 'Glazed Honey BBQ Pork Ribs',
     category: 'Grill & Sausages',
     caption: 'Slow-cooked ribs coated in a rich caramelised honey BBQ reduction.',
-    image: '/images/bavarian/honey-bbq-ribs.jpg',
+    image: '/images/bavarian/honey-bbq-ribs.webp',
     spanClass: 'md:col-span-4 md:row-span-1',
     isOfficialPhoto: true,
   },
@@ -960,7 +960,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     title: 'Pork & Bacon Chili Jam Burger',
     category: 'Signature Dishes',
     caption: 'Grilled pork patty, bacon chili jam, cheddar cheese and special sauce in sesame brioche.',
-    image: '/images/bavarian/pork-chili-jam-burger.jpg',
+    image: '/images/bavarian/pork-chili-jam-burger.webp',
     spanClass: 'md:col-span-4 md:row-span-1',
     isOfficialPhoto: true,
   },
@@ -969,7 +969,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     title: 'The Bavarian 1983 Emblem',
     category: 'Interiors & Bar',
     caption: 'The iconic Gothic "B" insignia of The Bavarian German Restaurant & Pub, Since 1983.',
-    image: '/images/bavarian/bavarian-logo.jpg',
+    image: '/images/bavarian/bavarian-logo.webp',
     spanClass: 'md:col-span-4 md:row-span-1',
     isOfficialPhoto: true,
   },

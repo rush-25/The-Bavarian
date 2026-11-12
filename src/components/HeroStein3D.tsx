@@ -605,7 +605,7 @@ export const HeroStein3D: React.FC = () => {
         /* Clean Photo Perspective View */
         <div className="relative z-10 w-full max-w-[400px] aspect-[4/5] rounded-3xl overflow-hidden border border-[#C5A46D]/30 shadow-[0_30px_80px_rgba(0,0,0,0.85)] group animate-modal-3d">
           <img
-            src="/images/bavarian/bavarian-steins-cheers.jpg"
+            src="/images/bavarian/bavarian-steins-cheers.webp"
             alt="The Bavarian Dimpled Beer Steins"
             className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
           />

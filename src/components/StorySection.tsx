@@ -11,19 +11,19 @@ const SLIDES: {
 }[] = [
   {
     key: 'interior',
-    src: '/images/bavarian/bavarian-bar-interior.jpg',
+    src: '/images/bavarian/bavarian-bar-interior.webp',
     title: 'Timber Bar & Dining Hall',
     tag: '11 Galle Face Terrace',
   },
   {
     key: 'steins',
-    src: '/images/bavarian/bavarian-steins-cheers.jpg',
+    src: '/images/bavarian/bavarian-steins-cheers.webp',
     title: 'Dimpled Maßkrug Steins',
     tag: 'Signature Glassware',
   },
   {
     key: 'roast',
-    src: '/images/bavarian/roast-pork-belly.jpg',
+    src: '/images/bavarian/roast-pork-belly.webp',
     title: 'Crackling Bavarian Roast',
     tag: 'Time-Honoured Craft',
   },
@@ -101,7 +101,7 @@ export const StorySection: React.FC = () => {
             {/* Minimal Crest Signature */}
             <div className="pt-2 flex items-center gap-3.5">
               <img
-                src="/images/bavarian/bavarian-logo.jpg"
+                src="/images/bavarian/bavarian-logo.webp"
                 alt="The Bavarian 1983 Emblem"
                 className="w-12 h-12 rounded-xl object-cover border border-[#C5A46D]/40"
               />

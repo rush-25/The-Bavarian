@@ -18,7 +18,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           {/* Brand Identity */}
           <div className="flex items-center gap-3.5">
             <img
-              src="/images/bavarian/bavarian-logo.jpg"
+              src="/images/bavarian/bavarian-logo.webp"
               alt="The Bavarian 1983 Emblem"
               className="w-11 h-11 rounded-full object-cover border border-[#C5A46D]/45"
             />

@@ -59,7 +59,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         >
           <div className="relative w-10 h-10 rounded-full overflow-hidden border border-[#C5A46D]/45 bg-[#1D1A17] flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
             <img
-              src="/images/bavarian/bavarian-logo.jpg"
+              src="/images/bavarian/bavarian-logo.webp"
               alt="The Bavarian 1983 Crest"
               className="w-full h-full object-cover"
             />

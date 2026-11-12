@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Menu, X, Phone, Calendar } from 'lucide-react';
 import { RESTAURANT_INFO } from '../data/bavarianData';
+import { BavarianCrestLogo } from './BavarianCrestLogo';
 
 interface NavbarProps {
   activeSection: string;
@@ -57,13 +58,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           }}
           className="group flex items-center gap-3 text-left focus:outline-none"
         >
-          <div className="relative w-10 h-10 rounded-full overflow-hidden border border-[#C5A46D]/45 bg-[#1D1A17] flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
-            <img
-              src="/images/bavarian/bavarian-logo.webp"
-              alt="The Bavarian 1983 Crest"
-              className="w-full h-full object-cover"
-            />
-          </div>
+          <BavarianCrestLogo className="w-10 h-10 transition-transform duration-300 group-hover:scale-105" />
           <div>
             <span className="block font-serif-display text-lg tracking-[0.16em] text-[#F2EAE0] font-semibold group-hover:text-[#C5A46D] transition-colors">
               THE BAVARIAN

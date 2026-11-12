@@ -1,6 +1,7 @@
 import React from 'react';
 import { ExternalLink, ArrowUp } from 'lucide-react';
 import { RESTAURANT_INFO } from '../data/bavarianData';
+import { BavarianCrestLogo } from './BavarianCrestLogo';
 
 interface FooterProps {
   onNavigate: (sectionId: string) => void;
@@ -17,11 +18,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-10">
           {/* Brand Identity */}
           <div className="flex items-center gap-3.5">
-            <img
-              src="/images/bavarian/bavarian-logo.webp"
-              alt="The Bavarian 1983 Emblem"
-              className="w-11 h-11 rounded-full object-cover border border-[#C5A46D]/45"
-            />
+            <BavarianCrestLogo className="w-11 h-11" />
             <div>
               <div className="font-serif-display text-xl tracking-widest text-[#F2EAE0] font-semibold">
                 THE BAVARIAN

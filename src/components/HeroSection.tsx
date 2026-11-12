@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowDownRight, Compass, Utensils, MapPin } from 'lucide-react';
 import { HeroStein3D } from './HeroStein3D';
+import barInteriorImg from '../assets/bavarian-bar-interior.webp';
 
 interface HeroSectionProps {
   onExploreMenu: () => void;
@@ -19,7 +20,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       {/* Atmospheric Dark Restaurant Photography Background with Vignette */}
       <div className="pointer-events-none absolute inset-0 z-0">
         <img
-          src="/images/bavarian/bavarian-bar-interior.webp"
+          src={barInteriorImg}
           alt="The Bavarian Restaurant Bar Interior"
           className="w-full h-full object-cover object-center opacity-20 scale-105 filter contrast-115 saturate-90"
         />

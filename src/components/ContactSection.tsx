@@ -9,6 +9,7 @@ import {
   ShoppingBag,
 } from 'lucide-react';
 import { RESTAURANT_INFO } from '../data/bavarianData';
+import { BavarianCrestLogo } from './BavarianCrestLogo';
 
 const InstagramIcon: React.FC<{ className?: string }> = ({ className = 'w-4 h-4' }) => (
   <svg
@@ -83,11 +84,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenReservatio
           <div className="lg:col-span-6 flex flex-col justify-between rounded-3xl bg-[#1D1A17] border border-[#C5A46D]/25 p-7 sm:p-9 shadow-[0_25px_70px_rgba(0,0,0,0.75)] space-y-7">
             <div className="space-y-6">
               <div className="flex items-center gap-4 pb-6 border-b border-[#C5A46D]/15">
-                <img
-                  src="/images/bavarian/bavarian-logo.webp"
-                  alt="The Bavarian Crest"
-                  className="w-13 h-13 rounded-2xl object-cover border border-[#C5A46D]/40"
-                />
+                <BavarianCrestLogo className="w-13 h-13" />
                 <div>
                   <div className="text-xs text-[#C5A46D]">Est. 1983 · Colombo</div>
                   <h3 className="font-serif-display text-2xl text-[#F2EAE0]">

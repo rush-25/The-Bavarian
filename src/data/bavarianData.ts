@@ -1,3 +1,7 @@
+import bavarianLogo from '../assets/bavarian-logo.webp';
+import barInteriorImg from '../assets/bavarian-bar-interior.webp';
+import steinsCheersImg from '../assets/bavarian-steins-cheers.webp';
+
 export type MenuCategory =
   | 'Starters'
   | 'Soups'
@@ -103,7 +107,7 @@ export const SIGNATURE_CARDS: SignatureCard[] = [
     subtitle: 'Sausages, schnitzel and traditional favourites.',
     description:
       'Munich white sausage with pretzel and mustard, hearty Currywurst, and grand 5-variety sausage platters.',
-    image: '/images/bavarian/munich-white-sausage.webp',
+    image: 'https://images.unsplash.com/photo-1511951786553-1d4f975424c9?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     targetCategory: 'Sausages',
     highlights: ['Munich White Sausage', 'Currywurst', 'Sausage Platter'],
     isOfficialPhoto: true,
@@ -115,7 +119,7 @@ export const SIGNATURE_CARDS: SignatureCard[] = [
     subtitle: 'Steaks, ribs and grilled specialities.',
     description:
       'Slow-roasted honey BBQ and bacon-cheddar wrapped pork ribs, woodcutter steaks, and mixed grill platters.',
-    image: '/images/bavarian/bacon-cheddar-ribs.webp',
+    image: 'https://images.unsplash.com/photo-1761315412952-a3a9e3ed06ff?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     targetCategory: 'Pork Ribs',
     highlights: ['Bacon & Cheddar Ribs', 'Honey BBQ Ribs', 'Meat Mixed Grill'],
     isOfficialPhoto: true,
@@ -127,7 +131,7 @@ export const SIGNATURE_CARDS: SignatureCard[] = [
     subtitle: 'Pork knuckle, goulash, pasta and seafood.',
     description:
       'Whole crispy pork knuckle, slow-braised Australian lamb shank, beef goulash, and black truffle fettuccini.',
-    image: '/images/bavarian/roast-pork-belly.webp',
+    image: 'https://images.unsplash.com/photo-1782150924851-f0c28295647f?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     targetCategory: 'Main Courses',
     highlights: ['Pork Knuckle', 'Australian Lamb Shank', 'Beef Goulash'],
     isOfficialPhoto: true,
@@ -139,7 +143,7 @@ export const SIGNATURE_CARDS: SignatureCard[] = [
     subtitle: 'Refreshing beverages and pub favourites.',
     description:
       'Chilled dimpled Maßkrug steins brimming with golden draught beer, signature house cocktails, and espresso martinis.',
-    image: '/images/bavarian/bavarian-steins-cheers.webp',
+    image: steinsCheersImg,
     targetCategory: 'Beverages & Cocktails',
     highlights: ['Dimpled Beer Steins', 'Bavarian Ruby Citrus', 'Espresso Martini'],
     isOfficialPhoto: true,
@@ -307,7 +311,7 @@ export const MENU_ITEMS: MenuItem[] = [
     priceLkr: 3050,
     description:
       'Authentic Bavarian Weisswurst served in warm herb broth alongside a freshly baked pretzel and traditional mustard.',
-    image: '/images/bavarian/munich-white-sausage.webp',
+    image: 'https://images.unsplash.com/photo-1511951786553-1d4f975424c9?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     isOfficialPhoto: true,
     badge: '1983 Signature',
   },
@@ -353,7 +357,7 @@ export const MENU_ITEMS: MenuItem[] = [
     priceLkr: 4470,
     description:
       'Slow-roasted individual pork ribs basted in a glossy caramelized honey barbecue glaze.',
-    image: '/images/bavarian/honey-bbq-ribs.webp',
+    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     isOfficialPhoto: true,
     badge: 'Popular',
   },
@@ -375,7 +379,7 @@ export const MENU_ITEMS: MenuItem[] = [
     priceLkr: 5500,
     description:
       'Slow-roasted pork ribs wrapped in smoky streaky bacon and melted cheddar cheese.',
-    image: '/images/bavarian/bacon-cheddar-ribs.webp',
+    image: 'https://images.unsplash.com/photo-1761315412952-a3a9e3ed06ff?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     isOfficialPhoto: true,
     badge: 'Showstopper',
   },
@@ -461,7 +465,7 @@ export const MENU_ITEMS: MenuItem[] = [
     priceLkr: 11200,
     description:
       'Boiled or crispy whole roasted Bavarian pork knuckle served with mashed potato, rich gravy, and braised red cabbage.',
-    image: '/images/bavarian/roast-pork-belly.webp',
+    image: 'https://images.unsplash.com/photo-1782150924851-f0c28295647f?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     isOfficialPhoto: true,
     badge: 'Bavarian Feast',
   },
@@ -624,7 +628,7 @@ export const MENU_ITEMS: MenuItem[] = [
     priceLkr: 5600,
     description:
       'Thick-cut Bavarian pork loin chops from the grill, served with your choice of side dish and sauce.',
-    image: '/images/bavarian/roast-pork-belly.webp',
+    image: 'https://images.unsplash.com/photo-1782150924851-f0c28295647f?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     isOfficialPhoto: true,
     badge: 'Featured',
   },
@@ -732,7 +736,7 @@ export const MENU_ITEMS: MenuItem[] = [
     priceLkr: 2750,
     description:
       'Grilled pork patty, house bacon chili jam, cheddar cheese, and special burger sauce with natural chips.',
-    image: '/images/bavarian/pork-chili-jam-burger.webp',
+    image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     isOfficialPhoto: true,
     badge: 'House Burger',
   },
@@ -789,7 +793,7 @@ export const MENU_ITEMS: MenuItem[] = [
     priceLabel: 'Dine-In Bar',
     description:
       'Served in our heavy dimpled glass steins emblazoned with The Bavarian crest.',
-    image: '/images/bavarian/bavarian-steins-cheers.webp',
+    image: steinsCheersImg,
     isOfficialPhoto: true,
     badge: 'Iconic Since 1983',
   },
@@ -800,7 +804,7 @@ export const MENU_ITEMS: MenuItem[] = [
     priceLabel: 'Dine-In Bar',
     description:
       'Jewel-toned house cocktail served over ice with fresh orange wheel, lemon spiral, and crest swizzle.',
-    image: '/images/bavarian/bavarian-ruby-cocktail.webp',
+    image: 'https://images.unsplash.com/photo-1754922271382-d8c4d0b79327?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     isOfficialPhoto: true,
     badge: 'Bar Signature',
   },
@@ -811,7 +815,7 @@ export const MENU_ITEMS: MenuItem[] = [
     priceLabel: 'Dine-In Bar',
     description:
       'Chilled espresso shaken with coffee liqueur to a rich crema head, dusted with cocoa and coffee beans.',
-    image: '/images/bavarian/espresso-martini.webp',
+    image: 'https://images.unsplash.com/photo-1774921676768-d89b18e32c3c?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     isOfficialPhoto: true,
     badge: 'After-Dinner',
   },
@@ -826,7 +830,7 @@ export const EXPERIENCE_CHAPTERS: ExperienceChapter[] = [
     subtitle: 'An intimate sanctuary of polished mahogany, brass and warm pendant light.',
     description:
       'Step off Galle Face Terrace into a world shaped by over four decades of hospitality.',
-    image: '/images/bavarian/bavarian-bar-interior.webp',
+    image: barInteriorImg,
     detailNote: 'Polished hardwood bar & heritage crest panelling',
     isOfficialPhoto: true,
   },
@@ -838,8 +842,8 @@ export const EXPERIENCE_CHAPTERS: ExperienceChapter[] = [
     subtitle: 'Where frosted dimpled glassware meets classic European mixology.',
     description:
       'From heavy dimpled Maßkrug steins crowned with dense white foam to ruby-red citrus cocktails.',
-    image: '/images/bavarian/bavarian-steins-cheers.webp',
-    secondaryImage: '/images/bavarian/bavarian-ruby-cocktail.webp',
+    image: steinsCheersImg,
+    secondaryImage: 'https://images.unsplash.com/photo-1754922271382-d8c4d0b79327?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     detailNote: 'Custom crest glassware & signature house pours',
     isOfficialPhoto: true,
   },
@@ -875,8 +879,8 @@ export const EXPERIENCE_CHAPTERS: ExperienceChapter[] = [
     subtitle: 'Four decades of family gatherings, celebrations and camaraderie.',
     description:
       'Whether gathering for honey-glazed ribs, Munich white sausages with pretzels, or a celebratory toast.',
-    image: '/images/bavarian/roast-pork-belly.webp',
-    secondaryImage: '/images/bavarian/bacon-cheddar-ribs.webp',
+    image: 'https://images.unsplash.com/photo-1782150924851-f0c28295647f?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
+    secondaryImage: 'https://images.unsplash.com/photo-1761315412952-a3a9e3ed06ff?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     detailNote: 'Hearty portions crafted for shared table rituals',
     isOfficialPhoto: true,
   },
@@ -888,7 +892,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     title: 'Prost at The Bavarian',
     category: 'Drinks & Steins',
     caption: 'Signature dimpled glass steins emblazoned with The Bavarian gothic crest.',
-    image: '/images/bavarian/bavarian-steins-cheers.webp',
+    image: steinsCheersImg,
     spanClass: 'md:col-span-7 md:row-span-2',
     isOfficialPhoto: true,
   },
@@ -897,7 +901,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     title: 'Crispy Crackling Roast Pork',
     category: 'Signature Dishes',
     caption: 'Golden crackling pork belly served with braised red cabbage, sauerkraut and rich gravy.',
-    image: '/images/bavarian/roast-pork-belly.webp',
+    image: 'https://images.unsplash.com/photo-1782150924851-f0c28295647f?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     spanClass: 'md:col-span-5 md:row-span-1',
     isOfficialPhoto: true,
   },
@@ -906,7 +910,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     title: 'Munich White Sausage & Pretzel',
     category: 'Grill & Sausages',
     caption: 'Traditional poached Weisswurst in herb broth with warm pretzel and duo of mustards.',
-    image: '/images/bavarian/munich-white-sausage.webp',
+    image: 'https://images.unsplash.com/photo-1511951786553-1d4f975424c9?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     spanClass: 'md:col-span-5 md:row-span-1',
     isOfficialPhoto: true,
   },
@@ -915,7 +919,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     title: 'The Bavarian Timber Bar',
     category: 'Interiors & Bar',
     caption: 'Warm mahogany panelling, overhead stemware, carved wooden stools and amber lamps.',
-    image: '/images/bavarian/bavarian-bar-interior.webp',
+    image: barInteriorImg,
     spanClass: 'md:col-span-6 md:row-span-2',
     isOfficialPhoto: true,
   },
@@ -924,7 +928,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     title: 'Bacon & Cheddar Wrapped Ribs',
     category: 'Grill & Sausages',
     caption: 'Flame-roasted pork ribs wrapped in smoky bacon and cheddar glaze.',
-    image: '/images/bavarian/bacon-cheddar-ribs.webp',
+    image: 'https://images.unsplash.com/photo-1761315412952-a3a9e3ed06ff?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     spanClass: 'md:col-span-6 md:row-span-1',
     isOfficialPhoto: true,
   },
@@ -933,7 +937,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     title: 'Signature Bavarian Cocktail',
     category: 'Drinks & Steins',
     caption: 'Ruby house cocktail garnished with fresh orange, lemon spiral and crest swizzle stick.',
-    image: '/images/bavarian/bavarian-ruby-cocktail.webp',
+    image: 'https://images.unsplash.com/photo-1754922271382-d8c4d0b79327?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     spanClass: 'md:col-span-3 md:row-span-1',
     isOfficialPhoto: true,
   },
@@ -942,7 +946,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     title: 'Cocoa Dusted Espresso Martini',
     category: 'Drinks & Steins',
     caption: 'Velvety coffee cocktail topped with roasted beans and cocoa.',
-    image: '/images/bavarian/espresso-martini.webp',
+    image: 'https://images.unsplash.com/photo-1774921676768-d89b18e32c3c?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     spanClass: 'md:col-span-3 md:row-span-1',
     isOfficialPhoto: true,
   },
@@ -951,7 +955,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     title: 'Glazed Honey BBQ Pork Ribs',
     category: 'Grill & Sausages',
     caption: 'Slow-cooked ribs coated in a rich caramelised honey BBQ reduction.',
-    image: '/images/bavarian/honey-bbq-ribs.webp',
+    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     spanClass: 'md:col-span-4 md:row-span-1',
     isOfficialPhoto: true,
   },
@@ -960,7 +964,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     title: 'Pork & Bacon Chili Jam Burger',
     category: 'Signature Dishes',
     caption: 'Grilled pork patty, bacon chili jam, cheddar cheese and special sauce in sesame brioche.',
-    image: '/images/bavarian/pork-chili-jam-burger.webp',
+    image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     spanClass: 'md:col-span-4 md:row-span-1',
     isOfficialPhoto: true,
   },
@@ -969,7 +973,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     title: 'The Bavarian 1983 Emblem',
     category: 'Interiors & Bar',
     caption: 'The iconic Gothic "B" insignia of The Bavarian German Restaurant & Pub, Since 1983.',
-    image: '/images/bavarian/bavarian-logo.webp',
+    image: bavarianLogo,
     spanClass: 'md:col-span-4 md:row-span-1',
     isOfficialPhoto: true,
   },

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { Sparkles, Camera, Box } from 'lucide-react';
+import steinsCheersImg from '../assets/bavarian-steins-cheers.webp';
 
 type LightingMood = 'tavern' | 'candlelight' | 'golden';
 
@@ -605,7 +606,7 @@ export const HeroStein3D: React.FC = () => {
         /* Clean Photo Perspective View */
         <div className="relative z-10 w-full max-w-[400px] aspect-[4/5] rounded-3xl overflow-hidden border border-[#C5A46D]/30 shadow-[0_30px_80px_rgba(0,0,0,0.85)] group animate-modal-3d">
           <img
-            src="/images/bavarian/bavarian-steins-cheers.webp"
+            src={steinsCheersImg}
             alt="The Bavarian Dimpled Beer Steins"
             className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
           />

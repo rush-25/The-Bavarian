@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Flame, Beer, UtensilsCrossed, Layers } from 'lucide-react';
+import { BavarianCrestLogo } from './BavarianCrestLogo';
+import barInteriorImg from '../assets/bavarian-bar-interior.webp';
+import steinsCheersImg from '../assets/bavarian-steins-cheers.webp';
 
 type StorySlideKey = 'interior' | 'steins' | 'roast';
 
@@ -11,19 +14,19 @@ const SLIDES: {
 }[] = [
   {
     key: 'interior',
-    src: '/images/bavarian/bavarian-bar-interior.webp',
+    src: barInteriorImg,
     title: 'Timber Bar & Dining Hall',
     tag: '11 Galle Face Terrace',
   },
   {
     key: 'steins',
-    src: '/images/bavarian/bavarian-steins-cheers.webp',
+    src: steinsCheersImg,
     title: 'Dimpled Maßkrug Steins',
     tag: 'Signature Glassware',
   },
   {
     key: 'roast',
-    src: '/images/bavarian/roast-pork-belly.webp',
+    src: 'https://images.unsplash.com/photo-1782150924851-f0c28295647f?crop=entropy&cs=tinysrgb&fit=max&fm=webp&q=80&w=1080',
     title: 'Crackling Bavarian Roast',
     tag: 'Time-Honoured Craft',
   },
@@ -100,11 +103,7 @@ export const StorySection: React.FC = () => {
 
             {/* Minimal Crest Signature */}
             <div className="pt-2 flex items-center gap-3.5">
-              <img
-                src="/images/bavarian/bavarian-logo.webp"
-                alt="The Bavarian 1983 Emblem"
-                className="w-12 h-12 rounded-xl object-cover border border-[#C5A46D]/40"
-              />
+              <BavarianCrestLogo className="w-12 h-12" />
               <div>
                 <div className="font-editorial italic text-xl text-[#F2EAE0]">
                   &ldquo;Gemütlichkeit in the Heart of Colombo&rdquo;

@@ -1,0 +1,10 @@
+{
+  "description": "Explore The Bavarian’s German-inspired menu, restaurant story and gallery, then find contact details, get directions or order online in Colombo.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

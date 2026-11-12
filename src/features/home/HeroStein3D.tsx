@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { Sparkles, Camera, Box } from 'lucide-react';
-import steinsCheersImg from '../assets/bavarian-steins-cheers.webp';
+import steinsCheersImg from '../../assets/images/bavarian-steins-cheers.webp';
 
 type LightingMood = 'tavern' | 'candlelight' | 'golden';
 
@@ -83,8 +83,8 @@ export const HeroStein3D: React.FC = () => {
       return;
     }
 
-    const width = container.clientWidth || 520;
-    const height = container.clientHeight || 580;
+    const width = container.clientWidth || 340;
+    const height = container.clientHeight || 420;
     renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -98,7 +98,7 @@ export const HeroStein3D: React.FC = () => {
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(35, width / height, 0.1, 100);
-    camera.position.set(0, 0.3, 8.1);
+    camera.position.set(0, 0.25, width < 480 ? 9.1 : 8.1);
 
     // ==================== LIGHTS ====================
     const ambientLight = new THREE.AmbientLight(0xffe9c8, 0.8);
@@ -415,8 +415,8 @@ export const HeroStein3D: React.FC = () => {
     let targetRotX = 0.06;
     let targetRotY = -0.25;
     let isDragging = false;
-    let prevMouseX = 0;
-    let prevMouseY = 0;
+    let prevPointerX = 0;
+    let prevPointerY = 0;
     let dragOffsetY = 0;
     let dragOffsetX = 0;
     let scrollProgress = 0;
@@ -427,12 +427,12 @@ export const HeroStein3D: React.FC = () => {
       const ny = -((e.clientY - rect.top) / rect.height) * 2 + 1;
 
       if (isDragging) {
-        const dx = e.clientX - prevMouseX;
-        const dy = e.clientY - prevMouseY;
+        const dx = e.clientX - prevPointerX;
+        const dy = e.clientY - prevPointerY;
         dragOffsetY += dx * 0.011;
         dragOffsetX = Math.max(-0.48, Math.min(0.48, dragOffsetX + dy * 0.007));
-        prevMouseX = e.clientX;
-        prevMouseY = e.clientY;
+        prevPointerX = e.clientX;
+        prevPointerY = e.clientY;
       } else {
         targetRotY = nx * 0.45;
         targetRotX = -ny * 0.24;
@@ -441,11 +441,33 @@ export const HeroStein3D: React.FC = () => {
 
     const onPointerDown = (e: MouseEvent) => {
       isDragging = true;
-      prevMouseX = e.clientX;
-      prevMouseY = e.clientY;
+      prevPointerX = e.clientX;
+      prevPointerY = e.clientY;
     };
 
     const onPointerUp = () => {
+      isDragging = false;
+    };
+
+    const onTouchStart = (e: TouchEvent) => {
+      if (e.touches.length === 1) {
+        isDragging = true;
+        prevPointerX = e.touches[0].clientX;
+        prevPointerY = e.touches[0].clientY;
+      }
+    };
+
+    const onTouchMove = (e: TouchEvent) => {
+      if (!isDragging || e.touches.length !== 1) return;
+      const dx = e.touches[0].clientX - prevPointerX;
+      const dy = e.touches[0].clientY - prevPointerY;
+      dragOffsetY += dx * 0.013;
+      dragOffsetX = Math.max(-0.48, Math.min(0.48, dragOffsetX + dy * 0.008));
+      prevPointerX = e.touches[0].clientX;
+      prevPointerY = e.touches[0].clientY;
+    };
+
+    const onTouchEnd = () => {
       isDragging = false;
     };
 
@@ -456,6 +478,9 @@ export const HeroStein3D: React.FC = () => {
     window.addEventListener('mousemove', onPointerMove, { passive: true });
     container.addEventListener('mousedown', onPointerDown);
     window.addEventListener('mouseup', onPointerUp);
+    container.addEventListener('touchstart', onTouchStart, { passive: true });
+    container.addEventListener('touchmove', onTouchMove, { passive: true });
+    container.addEventListener('touchend', onTouchEnd, { passive: true });
     window.addEventListener('scroll', onScroll, { passive: true });
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -552,9 +577,10 @@ export const HeroStein3D: React.FC = () => {
 
     const handleResize = () => {
       if (!container) return;
-      const w = container.clientWidth || 520;
-      const h = container.clientHeight || 580;
+      const w = container.clientWidth || 340;
+      const h = container.clientHeight || 420;
       camera.aspect = w / h;
+      camera.position.z = w < 480 ? 9.1 : 8.1;
       camera.updateProjectionMatrix();
       renderer.setSize(w, h);
     };
@@ -566,6 +592,9 @@ export const HeroStein3D: React.FC = () => {
       window.removeEventListener('mousemove', onPointerMove);
       container.removeEventListener('mousedown', onPointerDown);
       window.removeEventListener('mouseup', onPointerUp);
+      container.removeEventListener('touchstart', onTouchStart);
+      container.removeEventListener('touchmove', onTouchMove);
+      container.removeEventListener('touchend', onTouchEnd);
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', handleResize);
       renderer.dispose();
@@ -573,7 +602,7 @@ export const HeroStein3D: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-[440px] sm:h-[520px] lg:h-[600px] flex items-center justify-center select-none">
+    <div className="relative w-full h-[360px] sm:h-[480px] lg:h-[580px] flex items-center justify-center select-none">
       {/* Ambient radial glow behind the 3D Beer Stein */}
       <div
         className={`pointer-events-none absolute inset-0 rounded-full blur-3xl transition-all duration-700 ${
@@ -590,7 +619,7 @@ export const HeroStein3D: React.FC = () => {
       />
 
       {/* Minimalist orbital ring behind the 3D stein */}
-      <div className="pointer-events-none absolute w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] rounded-full border border-[#C5A46D]/15 flex items-center justify-center transition-transform duration-1000">
+      <div className="pointer-events-none absolute w-[260px] h-[260px] sm:w-[380px] sm:h-[380px] rounded-full border border-[#C5A46D]/15 flex items-center justify-center transition-transform duration-1000">
         <div className="w-[84%] h-[84%] rounded-full border border-dashed border-[#C5A46D]/10" />
       </div>
 
@@ -599,12 +628,12 @@ export const HeroStein3D: React.FC = () => {
         <div
           ref={mountRef}
           onDoubleClick={handleRaiseToast}
-          className="relative z-10 w-full h-full cursor-grab active:cursor-grabbing"
+          className="relative z-10 w-full h-full cursor-grab active:cursor-grabbing touch-pan-y"
           aria-label="Interactive 3D Bavarian Beer Stein and Pretzel"
         />
       ) : (
         /* Clean Photo Perspective View */
-        <div className="relative z-10 w-full max-w-[400px] aspect-[4/5] rounded-3xl overflow-hidden border border-[#C5A46D]/30 shadow-[0_30px_80px_rgba(0,0,0,0.85)] group animate-modal-3d">
+        <div className="relative z-10 w-full max-w-[340px] sm:max-w-[400px] aspect-[4/5] rounded-3xl overflow-hidden border border-[#C5A46D]/30 shadow-[0_30px_80px_rgba(0,0,0,0.85)] group animate-modal-3d">
           <img
             src={steinsCheersImg}
             alt="The Bavarian Dimpled Beer Steins"
@@ -620,18 +649,18 @@ export const HeroStein3D: React.FC = () => {
       )}
 
       {/* Ultra-Clean Floating 3D Control Pill at Bottom Center */}
-      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-[#141311]/85 backdrop-blur-xl border border-[#C5A46D]/25 shadow-[0_12px_40px_rgba(0,0,0,0.75)]">
+      <div className="absolute bottom-2 sm:bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 py-1.5 rounded-full bg-[#141311]/90 backdrop-blur-xl border border-[#C5A46D]/25 shadow-[0_12px_40px_rgba(0,0,0,0.75)] max-w-[calc(100%-1rem)]">
         <button
           type="button"
           onClick={handleRaiseToast}
-          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#C5A46D] text-[#141311] text-xs font-semibold tracking-wide hover:bg-[#F2EAE0] transition-all cursor-pointer active:scale-95"
+          className="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 min-h-[36px] rounded-full bg-[#C5A46D] text-[#141311] text-xs font-semibold tracking-wide hover:bg-[#F2EAE0] transition-all cursor-pointer active:scale-95 shrink-0"
           title="Raise a celebratory toast"
         >
           <Sparkles className="w-3.5 h-3.5" />
           <span>Prost!</span>
         </button>
 
-        <div className="h-3.5 w-[1px] bg-[#C5A46D]/20 mx-1" />
+        <div className="h-3.5 w-[1px] bg-[#C5A46D]/20 mx-0.5 sm:mx-1 shrink-0" />
 
         {(['tavern', 'candlelight', 'golden'] as LightingMood[]).map((m) => {
           const active = mood === m && !showPhotoOverlay;
@@ -643,15 +672,16 @@ export const HeroStein3D: React.FC = () => {
                 setShowPhotoOverlay(false);
                 setMood(m);
               }}
-              className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs transition-all cursor-pointer ${
+              className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 min-h-[36px] rounded-full text-xs transition-all cursor-pointer shrink-0 ${
                 active
                   ? 'bg-[#2A241E] text-[#F2EAE0] font-medium'
                   : 'text-[#9E9589] hover:text-[#F2EAE0]'
               }`}
               title={`${MOOD_CONFIG[m].label} lighting`}
+              aria-label={`${MOOD_CONFIG[m].label} lighting`}
             >
               <span
-                className="w-2 h-2 rounded-full shrink-0"
+                className="w-2.5 h-2.5 rounded-full shrink-0"
                 style={{ backgroundColor: MOOD_CONFIG[m].dotColor }}
               />
               <span className="hidden sm:inline">{MOOD_CONFIG[m].label}</span>
@@ -659,12 +689,12 @@ export const HeroStein3D: React.FC = () => {
           );
         })}
 
-        <div className="h-3.5 w-[1px] bg-[#C5A46D]/20 mx-1" />
+        <div className="h-3.5 w-[1px] bg-[#C5A46D]/20 mx-0.5 sm:mx-1 shrink-0" />
 
         <button
           type="button"
           onClick={() => setShowPhotoOverlay((prev) => !prev)}
-          className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs text-[#9E9589] hover:text-[#F2EAE0] transition-colors cursor-pointer"
+          className="inline-flex items-center gap-1.5 px-2.5 py-1.5 min-h-[36px] rounded-full text-xs text-[#9E9589] hover:text-[#F2EAE0] transition-colors cursor-pointer shrink-0"
           title={showPhotoOverlay ? 'Switch to 3D model' : 'View real stein photo'}
         >
           {showPhotoOverlay ? (
@@ -683,3 +713,4 @@ export const HeroStein3D: React.FC = () => {
     </div>
   );
 };
+

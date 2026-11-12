@@ -1,5 +1,5 @@
 import React from 'react';
-import bavarianLogo from '../assets/bavarian-logo.webp';
+import bavarianLogo from '../../assets/images/bavarian-logo.webp';
 
 interface BavarianCrestLogoProps {
   className?: string;
@@ -20,3 +20,4 @@ export const BavarianCrestLogo: React.FC<BavarianCrestLogoProps> = ({
     </div>
   );
 };
+

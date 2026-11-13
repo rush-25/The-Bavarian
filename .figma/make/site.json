@@ -1,5 +1,12 @@
 {
-  "description": "Explore The Bavarian’s German-inspired menu, restaurant story and gallery, then find contact details, get directions or order online in Colombo.",
+  "title": "THE BAVARIAN — German Restaurant & Pub | Colombo",
+  "description": "Authentic German roasts, traditional sausages, and frosted dimpled steins at 11 Galle Face Terrace, Colombo since 1983.",
+  "icons": {
+    "icon": "/favicon.png?v=2"
+  },
+  "openGraph": {
+    "image": "https://the-bavarian.vercel.app/images/hero/bavarian-steins-cheers.webp"
+  },
   "robots": {
     "index": false
   },

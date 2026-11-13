@@ -99,20 +99,20 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             {/* Minimalist Heritage Strip */}
             <div
               style={{ animationDelay: '320ms' }}
-              className="animate-hero-enter pt-5 sm:pt-6 border-t border-[#C5A46D]/15 grid grid-cols-3 gap-3 sm:gap-6 max-w-md"
+              className="animate-hero-enter pt-5 sm:pt-6 border-t border-[#C5A46D]/15 inline-flex flex-wrap items-start gap-5 sm:gap-8 max-w-full"
             >
               <div>
                 <div className="font-serif-display text-xl sm:text-3xl text-[#F2EAE0]">1983</div>
                 <div className="text-[11px] sm:text-xs text-[#9E9589] mt-0.5">Founded</div>
               </div>
-              <div className="border-l border-[#C5A46D]/15 pl-3 sm:pl-5">
+              <div className="border-l border-[#C5A46D]/15 pl-4 sm:pl-6">
                 <div className="font-serif-display text-xl sm:text-3xl text-[#C5A46D]">12</div>
                 <div className="text-[11px] sm:text-xs text-[#9E9589] mt-0.5">Menu Chapters</div>
               </div>
-              <div className="border-l border-[#C5A46D]/15 pl-3 sm:pl-5">
-                <div className="flex items-center gap-1 sm:gap-1.5 font-serif-display text-lg sm:text-2xl text-[#F2EAE0]">
+              <div className="border-l border-[#C5A46D]/15 pl-4 sm:pl-6">
+                <div className="flex items-center gap-1.5 font-serif-display text-xl sm:text-3xl text-[#F2EAE0] whitespace-nowrap">
                   <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#C5A46D] shrink-0" />
-                  <span className="truncate">Colombo</span>
+                  <span>Colombo</span>
                 </div>
                 <div className="text-[11px] sm:text-xs text-[#9E9589] mt-0.5">Galle Face</div>
               </div>

@@ -42,14 +42,20 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
           {/* Left Column: Clean Typography & CTAs (6 columns) */}
           <div className="lg:col-span-6 space-y-5 sm:space-y-7 text-left">
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#1D1A17]/90 border border-[#C5A46D]/30">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C5A46D]" />
+            <div
+              style={{ animationDelay: '40ms' }}
+              className="animate-hero-enter inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#1D1A17]/90 border border-[#C5A46D]/30"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-[#C5A46D] animate-pulse" />
               <span className="text-[11px] sm:text-xs tracking-widest text-[#C5A46D] font-medium">
                 Est. 1983 · Galle Face, Colombo
               </span>
             </div>
 
-            <div className="space-y-2.5 sm:space-y-3">
+            <div
+              style={{ animationDelay: '110ms' }}
+              className="animate-hero-enter space-y-2.5 sm:space-y-3"
+            >
               <h1 className="font-serif-display text-4xl sm:text-6xl md:text-7xl xl:text-[5.2rem] leading-[0.98] tracking-tight text-[#F2EAE0] font-semibold">
                 The Bavarian
               </h1>
@@ -58,16 +64,22 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               </p>
             </div>
 
-            <p className="text-sm sm:text-base text-[#9E9589] leading-relaxed max-w-md">
+            <p
+              style={{ animationDelay: '180ms' }}
+              className="animate-hero-enter text-sm sm:text-base text-[#9E9589] leading-relaxed max-w-md"
+            >
               Pioneering German roasts, traditional sausages, and frosted dimpled steins in the heart of Colombo.
             </p>
 
             {/* Primary & Secondary CTAs */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-3.5 pt-1">
+            <div
+              style={{ animationDelay: '250ms' }}
+              className="animate-hero-enter flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-3.5 pt-1"
+            >
               <button
                 type="button"
                 onClick={onExploreMenu}
-                className="group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 sm:py-4 min-h-[48px] rounded-full bg-[#C5A46D] text-[#141311] text-sm font-semibold tracking-wide hover:bg-[#F2EAE0] transition-all duration-300 shadow-[0_12px_35px_rgba(197,164,109,0.28)] hover:-translate-y-0.5 cursor-pointer"
+                className="touch-press group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 sm:py-4 min-h-[48px] rounded-full bg-[#C5A46D] text-[#141311] text-sm font-semibold tracking-wide hover:bg-[#F2EAE0] transition-all duration-300 shadow-[0_12px_35px_rgba(197,164,109,0.28)] hover:-translate-y-0.5 cursor-pointer"
               >
                 <Utensils className="w-4 h-4" />
                 <span>Explore Menu</span>
@@ -77,7 +89,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               <button
                 type="button"
                 onClick={onDiscoverStory}
-                className="group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 sm:py-4 min-h-[48px] rounded-full bg-[#1D1A17]/85 hover:bg-[#2A241E] text-[#F2EAE0] border border-[#C5A46D]/30 hover:border-[#C5A46D] text-sm font-medium tracking-wide transition-all duration-300 hover:-translate-y-0.5 cursor-pointer"
+                className="touch-press group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 sm:py-4 min-h-[48px] rounded-full bg-[#1D1A17]/85 hover:bg-[#2A241E] text-[#F2EAE0] border border-[#C5A46D]/30 hover:border-[#C5A46D] text-sm font-medium tracking-wide transition-all duration-300 hover:-translate-y-0.5 cursor-pointer"
               >
                 <Compass className="w-4 h-4 text-[#C5A46D]" />
                 <span>Our Story</span>
@@ -85,7 +97,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             </div>
 
             {/* Minimalist Heritage Strip */}
-            <div className="pt-5 sm:pt-6 border-t border-[#C5A46D]/15 grid grid-cols-3 gap-3 sm:gap-6 max-w-md">
+            <div
+              style={{ animationDelay: '320ms' }}
+              className="animate-hero-enter pt-5 sm:pt-6 border-t border-[#C5A46D]/15 grid grid-cols-3 gap-3 sm:gap-6 max-w-md"
+            >
               <div>
                 <div className="font-serif-display text-xl sm:text-3xl text-[#F2EAE0]">1983</div>
                 <div className="text-[11px] sm:text-xs text-[#9E9589] mt-0.5">Founded</div>
@@ -113,4 +128,3 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
     </section>
   );
 };
-

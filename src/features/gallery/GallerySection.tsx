@@ -6,6 +6,8 @@ import { GalleryItem } from '../../types/menu';
 export const GallerySection: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<GalleryFilter>('All');
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [dragX, setDragX] = useState<number>(0);
+  const [isDragging, setIsDragging] = useState<boolean>(false);
   const touchStartXRef = useRef<number | null>(null);
 
   const filteredGallery =
@@ -41,9 +43,18 @@ export const GallerySection: React.FC = () => {
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     touchStartXRef.current = e.touches[0].clientX;
+    setIsDragging(true);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (touchStartXRef.current === null) return;
+    const deltaX = e.touches[0].clientX - touchStartXRef.current;
+    setDragX(Math.max(-140, Math.min(140, deltaX * 0.75)));
   };
 
   const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
+    setIsDragging(false);
+    setDragX(0);
     if (touchStartXRef.current === null || lightboxIndex === null) return;
     const deltaX = e.changedTouches[0].clientX - touchStartXRef.current;
     touchStartXRef.current = null;
@@ -85,7 +96,7 @@ export const GallerySection: React.FC = () => {
                   setLightboxIndex(null);
                   setActiveFilter(filter);
                 }}
-                className={`shrink-0 px-4 py-2 min-h-[40px] rounded-full text-xs tracking-wide border transition-all duration-300 cursor-pointer ${
+                className={`touch-press shrink-0 px-4 py-2 min-h-[40px] rounded-full text-xs tracking-wide border transition-all duration-300 cursor-pointer ${
                   activeFilter === filter
                     ? 'bg-[#C5A46D] text-[#141311] border-[#C5A46D] font-semibold shadow-[0_0_20px_rgba(197,164,109,0.28)]'
                     : 'bg-[#141311]/75 text-[#F2EAE0]/80 border-[#C5A46D]/15 hover:border-[#C5A46D]/45'
@@ -97,23 +108,27 @@ export const GallerySection: React.FC = () => {
           </div>
         </div>
 
-        {/* Clean Asymmetric Bento Grid with 3D Hover Depth */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 auto-rows-[230px] sm:auto-rows-[260px] lg:auto-rows-[280px] gap-4 sm:gap-5">
+        {/* Clean Asymmetric Bento Grid with Filter Transition & Touch Spring */}
+        <div
+          key={activeFilter}
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 auto-rows-[230px] sm:auto-rows-[260px] lg:auto-rows-[280px] gap-4 sm:gap-5"
+        >
           {filteredGallery.map((item, idx) => (
             <div
               key={item.id}
               onClick={() => setLightboxIndex(idx)}
+              style={{ animationDelay: `${Math.min(idx, 8) * 40}ms` }}
               className={`${
                 activeFilter === 'All'
                   ? item.spanClass
                   : 'sm:col-span-1 md:col-span-4 md:row-span-1'
-              } group relative rounded-3xl overflow-hidden bg-[#141311] border border-[#C5A46D]/20 hover:border-[#C5A46D]/65 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] sm:hover:[transform:perspective(1000px)_translateY(-6px)_rotateX(2deg)] shadow-[0_20px_50px_rgba(0,0,0,0.6)] cursor-pointer`}
+              } animate-card-enter touch-press group relative rounded-3xl overflow-hidden bg-[#141311] border border-[#C5A46D]/20 hover:border-[#C5A46D]/65 active:border-[#C5A46D]/65 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] sm:hover:[transform:perspective(1000px)_translateY(-6px)_rotateX(2deg)] shadow-[0_20px_50px_rgba(0,0,0,0.6)] cursor-pointer`}
             >
               <img
                 src={item.image}
                 alt={item.title}
                 loading="lazy"
-                className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-108"
+                className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-108 group-active:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#141311]/90 via-transparent to-transparent opacity-75 group-hover:opacity-95 transition-opacity" />
 
@@ -138,12 +153,13 @@ export const GallerySection: React.FC = () => {
         </div>
       </div>
 
-      {/* Full-Screen 3D Lightbox Modal */}
+      {/* Full-Screen 3D Lightbox Modal with Live Touch Swipe */}
       {currentLightboxItem && lightboxIndex !== null && (
         <div
-          className="fixed inset-0 z-50 bg-[#141311]/95 backdrop-blur-2xl flex flex-col justify-between p-4 sm:p-8"
+          className="animate-backdrop-fade fixed inset-0 z-50 bg-[#141311]/95 backdrop-blur-2xl flex flex-col justify-between p-4 sm:p-8"
           onClick={() => setLightboxIndex(null)}
           onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
           role="dialog"
           aria-modal="true"
@@ -159,7 +175,7 @@ export const GallerySection: React.FC = () => {
             <button
               type="button"
               onClick={() => setLightboxIndex(null)}
-              className="inline-flex items-center gap-2 px-4 py-2 min-h-[40px] rounded-full bg-[#1D1A17] border border-[#C5A46D]/35 text-xs text-[#F2EAE0] hover:bg-[#C5A46D] hover:text-[#141311] transition-colors cursor-pointer"
+              className="touch-press inline-flex items-center gap-2 px-4 py-2 min-h-[40px] rounded-full bg-[#1D1A17] border border-[#C5A46D]/35 text-xs text-[#F2EAE0] hover:bg-[#C5A46D] hover:text-[#141311] transition-colors cursor-pointer"
             >
               <span>Close</span>
               <X className="w-4 h-4" />
@@ -177,22 +193,30 @@ export const GallerySection: React.FC = () => {
                   (lightboxIndex - 1 + filteredGallery.length) % filteredGallery.length
                 )
               }
-              className="absolute left-2 sm:-left-4 z-20 w-11 h-11 rounded-full bg-[#141311]/90 border border-[#C5A46D]/40 text-[#F2EAE0] hover:bg-[#C5A46D] hover:text-[#141311] flex items-center justify-center transition-colors cursor-pointer shadow-lg"
+              className="touch-press absolute left-2 sm:-left-4 z-20 w-11 h-11 rounded-full bg-[#141311]/90 border border-[#C5A46D]/40 text-[#F2EAE0] hover:bg-[#C5A46D] hover:text-[#141311] flex items-center justify-center transition-colors cursor-pointer shadow-lg"
               aria-label="Previous image"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
 
             <img
+              key={currentLightboxItem.id}
               src={currentLightboxItem.image}
               alt={currentLightboxItem.title}
-              className="max-h-[65dvh] sm:max-h-[72dvh] w-auto max-w-full rounded-2xl sm:rounded-3xl object-contain border border-[#C5A46D]/30 shadow-[0_25px_80px_rgba(0,0,0,0.9)]"
+              style={{
+                transform: `translate3d(${dragX}px, 0, 0) scale(${1 - Math.min(0.06, Math.abs(dragX) / 1400)})`,
+                opacity: Math.max(0.65, 1 - Math.abs(dragX) / 360),
+                transition: isDragging
+                  ? 'none'
+                  : 'transform 320ms cubic-bezier(0.22, 1, 0.36, 1), opacity 320ms ease',
+              }}
+              className="max-h-[65dvh] sm:max-h-[72dvh] w-auto max-w-full rounded-2xl sm:rounded-3xl object-contain border border-[#C5A46D]/30 shadow-[0_25px_80px_rgba(0,0,0,0.9)] select-none"
             />
 
             <button
               type="button"
               onClick={() => setLightboxIndex((lightboxIndex + 1) % filteredGallery.length)}
-              className="absolute right-2 sm:-right-4 z-20 w-11 h-11 rounded-full bg-[#141311]/90 border border-[#C5A46D]/40 text-[#F2EAE0] hover:bg-[#C5A46D] hover:text-[#141311] flex items-center justify-center transition-colors cursor-pointer shadow-lg"
+              className="touch-press absolute right-2 sm:-right-4 z-20 w-11 h-11 rounded-full bg-[#141311]/90 border border-[#C5A46D]/40 text-[#F2EAE0] hover:bg-[#C5A46D] hover:text-[#141311] flex items-center justify-center transition-colors cursor-pointer shadow-lg"
               aria-label="Next image"
             >
               <ChevronRight className="w-5 h-5" />
@@ -213,4 +237,3 @@ export const GallerySection: React.FC = () => {
     </section>
   );
 };
-

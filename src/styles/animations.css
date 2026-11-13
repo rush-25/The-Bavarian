@@ -1,22 +1,75 @@
-/* 3D Spatial & Keyframe Animations */
+/* 3D Spatial & Mobile-Optimized Keyframe Animations */
 
 @keyframes floatSlow {
   0%, 100% {
-    transform: translateY(0px) rotate(0deg);
+    transform: translate3d(0px, 0px, 0px) rotate(0deg);
   }
   50% {
-    transform: translateY(-10px) rotate(1.5deg);
+    transform: translate3d(0px, -10px, 0px) rotate(1.5deg);
   }
 }
 
 @keyframes modalPop3D {
   0% {
     opacity: 0;
-    transform: perspective(1000px) rotateX(10deg) translateY(24px) scale(0.94);
+    transform: perspective(1000px) rotateX(10deg) translate3d(0, 24px, 0) scale(0.94);
   }
   100% {
     opacity: 1;
-    transform: perspective(1000px) rotateX(0deg) translateY(0) scale(1);
+    transform: perspective(1000px) rotateX(0deg) translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes sheetSlideUp3D {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 44px, 0) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes backdropFade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes cardStaggerIn {
+  0% {
+    opacity: 0;
+    transform: perspective(900px) translate3d(0, 18px, 0) rotateX(4deg) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(900px) translate3d(0, 0, 0) rotateX(0deg) scale(1);
+  }
+}
+
+@keyframes heroEnterUp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes drawerLinkIn {
+  0% {
+    opacity: 0;
+    transform: translate3d(-10px, 6px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 }
 
@@ -34,7 +87,33 @@
 }
 
 .animate-modal-3d {
-  animation: modalPop3D 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: modalPop3D 0.42s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-sheet-up {
+  animation: sheetSlideUp3D 0.38s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@media (min-width: 640px) {
+  .sm\:animate-modal-3d {
+    animation: modalPop3D 0.42s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+}
+
+.animate-backdrop-fade {
+  animation: backdropFade 0.28s ease-out forwards;
+}
+
+.animate-card-enter {
+  animation: cardStaggerIn 0.46s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-hero-enter {
+  animation: heroEnterUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-drawer-item {
+  animation: drawerLinkIn 0.34s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .gold-divider-line {
@@ -47,4 +126,3 @@
     transparent 100%
   );
 }
-

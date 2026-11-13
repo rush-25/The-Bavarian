@@ -52,17 +52,24 @@ export const HeroStein3D: React.FC = () => {
   const [mood, setMood] = useState<LightingMood>('tavern');
   const [showPhotoOverlay, setShowPhotoOverlay] = useState<boolean>(false);
   const [toastActive, setToastActive] = useState<boolean>(false);
+  const [hasInteracted, setHasInteracted] = useState<boolean>(false);
 
   const toastPulseRef = useRef<number>(0);
   const moodRef = useRef<LightingMood>('tavern');
+  const pausedRef = useRef<boolean>(false);
 
   useEffect(() => {
     moodRef.current = mood;
   }, [mood]);
 
+  useEffect(() => {
+    pausedRef.current = showPhotoOverlay;
+  }, [showPhotoOverlay]);
+
   const handleRaiseToast = () => {
     toastPulseRef.current = 1.0;
     setToastActive(true);
+    setHasInteracted(true);
     window.setTimeout(() => setToastActive(false), 650);
   };
 
@@ -85,12 +92,13 @@ export const HeroStein3D: React.FC = () => {
 
     const width = container.clientWidth || 340;
     const height = container.clientHeight || 420;
+    const isSmallScreen = width < 640;
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isSmallScreen ? 1.5 : 2));
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.25;
-    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.enabled = !isSmallScreen;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
     container.innerHTML = '';
@@ -106,7 +114,7 @@ export const HeroStein3D: React.FC = () => {
 
     const keyLight = new THREE.DirectionalLight(0xffdfb0, 2.9);
     keyLight.position.set(4.5, 6.2, 5.5);
-    keyLight.castShadow = true;
+    keyLight.castShadow = !isSmallScreen;
     scene.add(keyLight);
 
     const rimLightLeft = new THREE.SpotLight(0xc5a46d, 4.5, 20, Math.PI / 3, 0.5, 1);
@@ -131,7 +139,8 @@ export const HeroStein3D: React.FC = () => {
     rootGroup.add(steinGroup);
 
     // ==================== 1. GOLDEN AMBER BEER LIQUID ====================
-    const beerGeometry = new THREE.CylinderGeometry(1.06, 0.96, 2.52, 48, 1, false);
+    const radialSegs = isSmallScreen ? 32 : 48;
+    const beerGeometry = new THREE.CylinderGeometry(1.06, 0.96, 2.52, radialSegs, 1, false);
     const beerMaterial = new THREE.MeshPhysicalMaterial({
       color: 0xd98218,
       emissive: 0x7a3803,
@@ -150,7 +159,7 @@ export const HeroStein3D: React.FC = () => {
     steinGroup.add(beerMesh);
 
     // ==================== 2. RISING CARBONATION BUBBLES ====================
-    const bubbleCount = 90;
+    const bubbleCount = isSmallScreen ? 55 : 90;
     const bubbleGeometry = new THREE.SphereGeometry(0.025, 8, 8);
     const bubbleMaterial = new THREE.MeshBasicMaterial({
       color: 0xfff0c2,
@@ -193,7 +202,7 @@ export const HeroStein3D: React.FC = () => {
       opacity: 0.42,
     });
 
-    const outerGlassGeo = new THREE.CylinderGeometry(1.22, 1.11, 2.86, 48, 8, true);
+    const outerGlassGeo = new THREE.CylinderGeometry(1.22, 1.11, 2.86, radialSegs, 8, true);
     const outerGlassMesh = new THREE.Mesh(outerGlassGeo, glassMaterial);
     outerGlassMesh.position.y = -0.02;
     steinGroup.add(outerGlassMesh);
@@ -208,7 +217,7 @@ export const HeroStein3D: React.FC = () => {
       transparent: true,
       opacity: 0.68,
     });
-    const baseBottomGeo = new THREE.CylinderGeometry(1.14, 1.2, 0.38, 48);
+    const baseBottomGeo = new THREE.CylinderGeometry(1.14, 1.2, 0.38, radialSegs);
     const baseBottomMesh = new THREE.Mesh(baseBottomGeo, baseSolidMaterial);
     baseBottomMesh.position.y = -1.52;
     steinGroup.add(baseBottomMesh);
@@ -219,14 +228,14 @@ export const HeroStein3D: React.FC = () => {
       metalness: 0.9,
     });
 
-    const bottomGoldBandGeo = new THREE.TorusGeometry(1.16, 0.035, 16, 64);
+    const bottomGoldBandGeo = new THREE.TorusGeometry(1.16, 0.035, 16, radialSegs);
     const bottomGoldBand = new THREE.Mesh(bottomGoldBandGeo, goldMetalMaterial);
     bottomGoldBand.rotation.x = Math.PI / 2;
     bottomGoldBand.position.y = -1.35;
     steinGroup.add(bottomGoldBand);
 
     // Dimpled Maßkrug Facets
-    const dimpleGeo = new THREE.SphereGeometry(0.28, 18, 18);
+    const dimpleGeo = new THREE.SphereGeometry(0.28, isSmallScreen ? 14 : 18, isSmallScreen ? 14 : 18);
     dimpleGeo.scale(1.0, 1.28, 0.32);
     const rows = [-0.82, -0.12, 0.56];
     rows.forEach((rowY, rowIdx) => {
@@ -333,7 +342,7 @@ export const HeroStein3D: React.FC = () => {
     ];
 
     foamPuffConfigs.forEach(([x, y, z, r]) => {
-      const puffGeo = new THREE.SphereGeometry(r, 20, 20);
+      const puffGeo = new THREE.SphereGeometry(r, 18, 18);
       const puff = new THREE.Mesh(puffGeo, foamMaterial);
       puff.position.set(x, y, z);
       puff.scale.y = 0.82;
@@ -358,7 +367,7 @@ export const HeroStein3D: React.FC = () => {
       pretzelPoints.push(new THREE.Vector3(x, y, z));
     }
     const pretzelCurve = new THREE.CatmullRomCurve3(pretzelPoints, true);
-    const pretzelGeo = new THREE.TubeGeometry(pretzelCurve, 100, 0.21, 18, true);
+    const pretzelGeo = new THREE.TubeGeometry(pretzelCurve, 80, 0.21, 14, true);
     const pretzelCrustMaterial = new THREE.MeshPhysicalMaterial({
       color: 0x8f4319,
       emissive: 0x260e03,
@@ -392,7 +401,7 @@ export const HeroStein3D: React.FC = () => {
     rootGroup.add(pretzelGroup);
 
     // ==================== 8. ATMOSPHERIC GOLDEN PARTICLES ====================
-    const particleCount = 120;
+    const particleCount = isSmallScreen ? 70 : 120;
     const particlePositions = new Float32Array(particleCount * 3);
     for (let i = 0; i < particleCount; i++) {
       particlePositions[i * 3] = (Math.random() - 0.5) * 8.5;
@@ -411,7 +420,7 @@ export const HeroStein3D: React.FC = () => {
     const ambientParticles = new THREE.Points(particleGeo, particleMat);
     scene.add(ambientParticles);
 
-    // ==================== 9. INTERACTION & SCROLL-LINKED 3D LOOP ====================
+    // ==================== 9. INTERACTION, TOUCH INERTIA & SCROLL-LINKED 3D LOOP ====================
     let targetRotX = 0.06;
     let targetRotY = -0.25;
     let isDragging = false;
@@ -419,6 +428,7 @@ export const HeroStein3D: React.FC = () => {
     let prevPointerY = 0;
     let dragOffsetY = 0;
     let dragOffsetX = 0;
+    let velocityY = 0;
     let scrollProgress = 0;
 
     const onPointerMove = (e: MouseEvent) => {
@@ -429,7 +439,9 @@ export const HeroStein3D: React.FC = () => {
       if (isDragging) {
         const dx = e.clientX - prevPointerX;
         const dy = e.clientY - prevPointerY;
-        dragOffsetY += dx * 0.011;
+        const deltaRotY = dx * 0.011;
+        dragOffsetY += deltaRotY;
+        velocityY = deltaRotY;
         dragOffsetX = Math.max(-0.48, Math.min(0.48, dragOffsetX + dy * 0.007));
         prevPointerX = e.clientX;
         prevPointerY = e.clientY;
@@ -443,6 +455,7 @@ export const HeroStein3D: React.FC = () => {
       isDragging = true;
       prevPointerX = e.clientX;
       prevPointerY = e.clientY;
+      setHasInteracted(true);
     };
 
     const onPointerUp = () => {
@@ -452,8 +465,10 @@ export const HeroStein3D: React.FC = () => {
     const onTouchStart = (e: TouchEvent) => {
       if (e.touches.length === 1) {
         isDragging = true;
+        velocityY = 0;
         prevPointerX = e.touches[0].clientX;
         prevPointerY = e.touches[0].clientY;
+        setHasInteracted(true);
       }
     };
 
@@ -461,8 +476,10 @@ export const HeroStein3D: React.FC = () => {
       if (!isDragging || e.touches.length !== 1) return;
       const dx = e.touches[0].clientX - prevPointerX;
       const dy = e.touches[0].clientY - prevPointerY;
-      dragOffsetY += dx * 0.013;
-      dragOffsetX = Math.max(-0.48, Math.min(0.48, dragOffsetX + dy * 0.008));
+      const deltaRotY = dx * 0.015;
+      dragOffsetY += deltaRotY;
+      velocityY = deltaRotY;
+      dragOffsetX = Math.max(-0.42, Math.min(0.42, dragOffsetX + dy * 0.006));
       prevPointerX = e.touches[0].clientX;
       prevPointerY = e.touches[0].clientY;
     };
@@ -494,16 +511,29 @@ export const HeroStein3D: React.FC = () => {
 
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
+      if (pausedRef.current) return;
+
       const elapsed = clock.getElapsedTime();
 
+      // Apply touch/drag momentum inertia when released & gentle vertical tilt return
+      if (!isDragging) {
+        if (Math.abs(velocityY) > 0.0005) {
+          dragOffsetY += velocityY;
+          velocityY *= 0.94;
+        } else {
+          velocityY = 0;
+        }
+        dragOffsetX = THREE.MathUtils.lerp(dragOffsetX, 0, 0.03);
+      }
+
       // Entry scale & position lerp
-      rootGroup.scale.x = THREE.MathUtils.lerp(rootGroup.scale.x, 1, 0.045);
-      rootGroup.scale.y = THREE.MathUtils.lerp(rootGroup.scale.y, 1, 0.045);
-      rootGroup.scale.z = THREE.MathUtils.lerp(rootGroup.scale.z, 1, 0.045);
+      rootGroup.scale.x = THREE.MathUtils.lerp(rootGroup.scale.x, 1, 0.055);
+      rootGroup.scale.y = THREE.MathUtils.lerp(rootGroup.scale.y, 1, 0.055);
+      rootGroup.scale.z = THREE.MathUtils.lerp(rootGroup.scale.z, 1, 0.055);
       rootGroup.position.y = THREE.MathUtils.lerp(
         rootGroup.position.y,
         scrollProgress * 0.35,
-        0.05
+        0.06
       );
 
       // Smooth mood lighting transitions
@@ -534,12 +564,12 @@ export const HeroStein3D: React.FC = () => {
       steinGroup.rotation.y = THREE.MathUtils.lerp(
         steinGroup.rotation.y,
         targetRotY + idleSpin + dragOffsetY + scrollProgress * 0.55,
-        0.06
+        0.08
       );
       steinGroup.rotation.x = THREE.MathUtils.lerp(
         steinGroup.rotation.x,
         targetRotX + dragOffsetX - toastTilt * 0.4 + scrollProgress * 0.18,
-        0.06
+        0.08
       );
       steinGroup.rotation.z = 0.04 + toastTilt;
 
@@ -551,7 +581,7 @@ export const HeroStein3D: React.FC = () => {
       pretzelGroup.position.y =
         -1.12 - floatY * 0.85 + Math.cos(elapsed * 1.3) * 0.09 - toastLift * 0.4;
       pretzelGroup.rotation.y =
-        -0.45 + elapsed * (prefersReducedMotion ? 0 : 0.3) + targetRotY * 0.5;
+        -0.45 + elapsed * (prefersReducedMotion ? 0 : 0.3) + targetRotY * 0.5 + dragOffsetY * 0.3;
       pretzelGroup.rotation.x = 0.35 + Math.sin(elapsed * 0.9) * 0.14 - targetRotX * 0.4;
 
       // Rising carbonation bubbles
@@ -582,6 +612,7 @@ export const HeroStein3D: React.FC = () => {
       camera.aspect = w / h;
       camera.position.z = w < 480 ? 9.1 : 8.1;
       camera.updateProjectionMatrix();
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, w < 640 ? 1.5 : 2));
       renderer.setSize(w, h);
     };
 
@@ -619,31 +650,50 @@ export const HeroStein3D: React.FC = () => {
       />
 
       {/* Minimalist orbital ring behind the 3D stein */}
-      <div className="pointer-events-none absolute w-[260px] h-[260px] sm:w-[380px] sm:h-[380px] rounded-full border border-[#C5A46D]/15 flex items-center justify-center transition-transform duration-1000">
+      <div
+        className={`pointer-events-none absolute w-[260px] h-[260px] sm:w-[380px] sm:h-[380px] rounded-full border border-[#C5A46D]/15 flex items-center justify-center transition-transform duration-700 ${
+          toastActive ? 'scale-105 border-[#C5A46D]/40' : 'scale-100'
+        }`}
+      >
         <div className="w-[84%] h-[84%] rounded-full border border-dashed border-[#C5A46D]/10" />
       </div>
 
-      {/* Three.js WebGL Stage */}
-      {webglSupported && !showPhotoOverlay ? (
+      {/* Subtle Touch Hint on Mobile Before First Interaction */}
+      {webglSupported && !showPhotoOverlay && !hasInteracted && (
+        <div className="sm:hidden pointer-events-none absolute top-2 right-2 z-20 px-2.5 py-1 rounded-full bg-[#141311]/75 backdrop-blur-md border border-[#C5A46D]/25 text-[10px] tracking-wider text-[#C5A46D]/90 animate-pulse">
+          Swipe 3D Stein
+        </div>
+      )}
+
+      {/* Three.js WebGL Stage (Kept mounted for instant smooth toggle) */}
+      {webglSupported && (
         <div
           ref={mountRef}
           onDoubleClick={handleRaiseToast}
-          className="relative z-10 w-full h-full cursor-grab active:cursor-grabbing touch-pan-y"
+          className={`relative z-10 w-full h-full cursor-grab active:cursor-grabbing touch-pan-y transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+            showPhotoOverlay
+              ? 'opacity-0 scale-90 pointer-events-none'
+              : 'opacity-100 scale-100'
+          }`}
           aria-label="Interactive 3D Bavarian Beer Stein and Pretzel"
         />
-      ) : (
-        /* Clean Photo Perspective View */
-        <div className="relative z-10 w-full max-w-[340px] sm:max-w-[400px] aspect-[4/5] rounded-3xl overflow-hidden border border-[#C5A46D]/30 shadow-[0_30px_80px_rgba(0,0,0,0.85)] group animate-modal-3d">
-          <img
-            src={steinsCheersImg}
-            alt="The Bavarian Dimpled Beer Steins"
-            className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#141311] via-transparent to-transparent" />
-          <div className="absolute bottom-5 left-5 right-5">
-            <p className="font-serif-display text-xl text-[#F2EAE0]">
-              Dimpled Maßkrug Steins
-            </p>
+      )}
+
+      {/* Clean Photo Perspective View Overlay */}
+      {(!webglSupported || showPhotoOverlay) && (
+        <div className="absolute inset-0 z-10 flex items-center justify-center p-2">
+          <div className="relative w-full max-w-[300px] sm:max-w-[380px] aspect-[4/5] rounded-3xl overflow-hidden border border-[#C5A46D]/35 shadow-[0_30px_80px_rgba(0,0,0,0.85)] group animate-modal-3d">
+            <img
+              src={steinsCheersImg}
+              alt="The Bavarian Dimpled Beer Steins"
+              className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#141311] via-transparent to-transparent" />
+            <div className="absolute bottom-5 left-5 right-5">
+              <p className="font-serif-display text-xl text-[#F2EAE0]">
+                Dimpled Maßkrug Steins
+              </p>
+            </div>
           </div>
         </div>
       )}
@@ -653,7 +703,7 @@ export const HeroStein3D: React.FC = () => {
         <button
           type="button"
           onClick={handleRaiseToast}
-          className="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 min-h-[36px] rounded-full bg-[#C5A46D] text-[#141311] text-xs font-semibold tracking-wide hover:bg-[#F2EAE0] transition-all cursor-pointer active:scale-95 shrink-0"
+          className="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 min-h-[36px] rounded-full bg-[#C5A46D] text-[#141311] text-xs font-semibold tracking-wide hover:bg-[#F2EAE0] transition-all cursor-pointer active:scale-92 shrink-0"
           title="Raise a celebratory toast"
         >
           <Sparkles className="w-3.5 h-3.5" />
@@ -672,7 +722,7 @@ export const HeroStein3D: React.FC = () => {
                 setShowPhotoOverlay(false);
                 setMood(m);
               }}
-              className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 min-h-[36px] rounded-full text-xs transition-all cursor-pointer shrink-0 ${
+              className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 min-h-[36px] rounded-full text-xs transition-all cursor-pointer active:scale-92 shrink-0 ${
                 active
                   ? 'bg-[#2A241E] text-[#F2EAE0] font-medium'
                   : 'text-[#9E9589] hover:text-[#F2EAE0]'
@@ -694,7 +744,7 @@ export const HeroStein3D: React.FC = () => {
         <button
           type="button"
           onClick={() => setShowPhotoOverlay((prev) => !prev)}
-          className="inline-flex items-center gap-1.5 px-2.5 py-1.5 min-h-[36px] rounded-full text-xs text-[#9E9589] hover:text-[#F2EAE0] transition-colors cursor-pointer shrink-0"
+          className="inline-flex items-center gap-1.5 px-2.5 py-1.5 min-h-[36px] rounded-full text-xs text-[#9E9589] hover:text-[#F2EAE0] active:scale-92 transition-all cursor-pointer shrink-0"
           title={showPhotoOverlay ? 'Switch to 3D model' : 'View real stein photo'}
         >
           {showPhotoOverlay ? (
@@ -713,4 +763,3 @@ export const HeroStein3D: React.FC = () => {
     </div>
   );
 };
-

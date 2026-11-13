@@ -19,7 +19,8 @@
     background-color: #141311;
     color: #F2EAE0;
     font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
-    overflow-x: hidden;
+    overflow-x: clip;
+    -webkit-tap-highlight-color: transparent;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -38,8 +39,12 @@
   body {
     background-color: #141311;
     color: #F2EAE0;
-    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+  }
+
+  button,
+  a {
+    touch-action: manipulation;
   }
 
   ::selection {
@@ -109,17 +114,35 @@
   backface-visibility: hidden;
 }
 
-/* Smooth 3D Scroll Reveal System */
+/* Tactile Mobile Touch Spring */
+.touch-press {
+  transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.touch-press:active {
+  transform: scale(0.975);
+}
+
+/* Smooth 3D Scroll Reveal System — Tuned for Mobile 60fps & Desktop Depth */
 .reveal-3d {
   opacity: 0;
-  transform: perspective(1000px) translateY(36px) rotateX(8deg) scale(0.97);
+  transform: perspective(900px) translate3d(0, 20px, 0) rotateX(4deg) scale(0.985);
   transition:
-    opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity 0.6s cubic-bezier(0.22, 1, 0.3, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.3, 1);
   will-change: opacity, transform;
+}
+
+@media (min-width: 640px) {
+  .reveal-3d {
+    transform: perspective(1000px) translate3d(0, 32px, 0) rotateX(7deg) scale(0.97);
+    transition:
+      opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
 }
 
 .reveal-3d.is-visible {
   opacity: 1;
-  transform: perspective(1000px) translateY(0) rotateX(0deg) scale(1);
+  transform: perspective(1000px) translate3d(0, 0, 0) rotateX(0deg) scale(1);
+  will-change: auto;
 }

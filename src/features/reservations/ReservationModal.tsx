@@ -36,20 +36,23 @@ export const ReservationModal: React.FC<ReservationModalProps> = ({ isOpen, onCl
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/82 backdrop-blur-md"
+      className="animate-backdrop-fade fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/82 backdrop-blur-md"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-label="Book a Table at The Bavarian"
     >
       <div
-        className="relative w-full max-w-lg rounded-3xl bg-[#1D1A17] border border-[#C5A46D]/40 p-5 sm:p-8 shadow-[0_30px_90px_rgba(0,0,0,0.92)] max-h-[90dvh] overflow-y-auto animate-modal-3d"
+        className="relative w-full max-w-lg rounded-t-3xl sm:rounded-3xl bg-[#1D1A17] border-t sm:border border-[#C5A46D]/40 p-5 sm:p-8 pb-7 sm:pb-8 shadow-[0_30px_90px_rgba(0,0,0,0.92)] max-h-[90dvh] overflow-y-auto animate-sheet-up sm:animate-modal-3d"
         onClick={(e) => e.stopPropagation()}
       >
+        {/* Mobile Bottom-Sheet Pill Indicator */}
+        <div className="sm:hidden w-10 h-1 rounded-full bg-[#F2EAE0]/25 mx-auto mb-4" />
+
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-4 right-4 sm:top-5 sm:right-5 w-11 h-11 rounded-full bg-[#141311] border border-[#C5A46D]/30 text-[#F2EAE0] hover:text-[#C5A46D] flex items-center justify-center cursor-pointer transition-colors"
+          className="touch-press absolute top-4 right-4 sm:top-5 sm:right-5 w-11 h-11 rounded-full bg-[#141311] border border-[#C5A46D]/30 text-[#F2EAE0] hover:text-[#C5A46D] flex items-center justify-center cursor-pointer transition-colors"
           aria-label="Close reservation modal"
         >
           <X className="w-5 h-5" />
@@ -74,7 +77,7 @@ export const ReservationModal: React.FC<ReservationModalProps> = ({ isOpen, onCl
           </div>
           <a
             href={RESTAURANT_INFO.phoneHref}
-            className="inline-flex items-center justify-center gap-2 px-4 py-2 min-h-[40px] rounded-full bg-[#C5A46D] text-[#141311] text-xs font-semibold tracking-wider hover:bg-[#F2EAE0] transition-colors shrink-0"
+            className="touch-press inline-flex items-center justify-center gap-2 px-4 py-2 min-h-[40px] rounded-full bg-[#C5A46D] text-[#141311] text-xs font-semibold tracking-wider hover:bg-[#F2EAE0] transition-colors shrink-0"
           >
             <Phone className="w-3.5 h-3.5" />
             <span>Call</span>
@@ -93,4 +96,3 @@ export const ReservationModal: React.FC<ReservationModalProps> = ({ isOpen, onCl
     </div>
   );
 };
-

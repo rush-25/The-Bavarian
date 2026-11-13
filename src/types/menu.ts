@@ -1,13 +1,16 @@
 export type MenuCategory =
-  | 'Bavarian Classics'
+  | 'Starters'
+  | 'Soups'
+  | 'Salads'
+  | 'Sausages'
+  | 'Pork Ribs'
+  | 'Main Courses'
+  | 'Schnitzel'
+  | 'Pasta'
   | 'Grill & Steaks'
-  | 'Pork Specialities'
-  | 'Sausages & Wurst'
-  | 'Burgers & Sandwiches'
-  | 'Appetizers & Soups'
-  | 'Seafood'
-  | 'Desserts & Sweets'
-  | 'Beverages & Steins';
+  | 'Gourmet Burgers'
+  | 'Desserts'
+  | 'Beverages & Cocktails';
 
 export interface MenuItem {
   id: string;
@@ -26,8 +29,11 @@ export interface SignatureCard {
   number: string;
   title: string;
   subtitle: string;
+  description?: string;
   targetCategory: MenuCategory;
   image: string;
+  highlights?: string[];
+  isOfficialPhoto?: boolean;
 }
 
 export interface ExperienceChapter {

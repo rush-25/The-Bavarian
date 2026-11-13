@@ -91,7 +91,7 @@ export const InteractiveMenuSection: React.FC<InteractiveMenuSectionProps> = ({
               href={RESTAURANT_INFO.links.uberEats}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 min-h-[44px] rounded-full bg-[#C5A46D] text-[#141311] text-xs font-semibold tracking-wider hover:bg-[#F2EAE0] transition-all shrink-0"
+              className="touch-press inline-flex items-center justify-center gap-2 px-5 py-2.5 min-h-[44px] rounded-full bg-[#C5A46D] text-[#141311] text-xs font-semibold tracking-wider hover:bg-[#F2EAE0] transition-all shrink-0"
             >
               <span>Order Online</span>
               <ExternalLink className="w-3.5 h-3.5" />
@@ -107,9 +107,9 @@ export const InteractiveMenuSection: React.FC<InteractiveMenuSectionProps> = ({
           className="mb-8 sm:mb-10"
         />
 
-        {/* Menu Grid with 3D Hover Depth */}
+        {/* Menu Grid with Smooth Category Switch Entrance */}
         {filteredItems.length === 0 ? (
-          <div className="py-12 sm:py-14 text-center rounded-3xl bg-[#141311]/75 border border-[#C5A46D]/20 p-6 sm:p-8">
+          <div className="animate-card-enter py-12 sm:py-14 text-center rounded-3xl bg-[#141311]/75 border border-[#C5A46D]/20 p-6 sm:p-8">
             <p className="font-serif-display text-2xl text-[#F2EAE0] mb-3">
               No matching dishes found
             </p>
@@ -119,17 +119,21 @@ export const InteractiveMenuSection: React.FC<InteractiveMenuSectionProps> = ({
                 setSearchQuery('');
                 onCategoryChange('All');
               }}
-              className="px-6 py-2.5 min-h-[44px] rounded-full bg-[#C5A46D] text-[#141311] text-xs font-semibold tracking-wider cursor-pointer"
+              className="touch-press px-6 py-2.5 min-h-[44px] rounded-full bg-[#C5A46D] text-[#141311] text-xs font-semibold tracking-wider cursor-pointer"
             >
               Reset Filters
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            {filteredItems.map((item) => (
+          <div
+            key={`${selectedCategory}-${searchQuery ? 'search' : 'all'}`}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
+          >
+            {filteredItems.map((item, idx) => (
               <MenuItem
                 key={item.id}
                 item={item}
+                index={idx}
                 onClick={() => setSelectedDish(item)}
               />
             ))}
@@ -153,20 +157,23 @@ export const InteractiveMenuSection: React.FC<InteractiveMenuSectionProps> = ({
         </div>
       </div>
 
-      {/* 3D Animated Dish Quick-Inspect Modal */}
+      {/* Responsive Bottom-Sheet (Mobile) / 3D Modal (Desktop) Dish Quick-Inspect */}
       {selectedDish && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-md"
+          className="animate-backdrop-fade fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/82 backdrop-blur-md"
           onClick={() => setSelectedDish(null)}
         >
           <div
-            className="relative w-full max-w-2xl max-h-[90dvh] overflow-y-auto rounded-3xl bg-[#1D1A17] border border-[#C5A46D]/40 shadow-[0_30px_90px_rgba(0,0,0,0.9)] animate-modal-3d"
+            className="relative w-full max-w-2xl max-h-[90dvh] overflow-y-auto rounded-t-3xl sm:rounded-3xl bg-[#1D1A17] border-t sm:border border-[#C5A46D]/40 shadow-[0_30px_90px_rgba(0,0,0,0.9)] animate-sheet-up sm:animate-modal-3d"
             onClick={(e) => e.stopPropagation()}
           >
+            {/* Mobile Sheet Handle */}
+            <div className="sm:hidden absolute top-2.5 left-1/2 -translate-x-1/2 z-30 w-10 h-1 rounded-full bg-[#F2EAE0]/35" />
+
             <button
               type="button"
               onClick={() => setSelectedDish(null)}
-              className="absolute top-3.5 right-3.5 z-20 w-11 h-11 rounded-full bg-[#141311]/90 border border-[#C5A46D]/35 text-[#F2EAE0] hover:text-[#C5A46D] flex items-center justify-center cursor-pointer transition-colors"
+              className="touch-press absolute top-3.5 right-3.5 z-20 w-11 h-11 rounded-full bg-[#141311]/90 border border-[#C5A46D]/35 text-[#F2EAE0] hover:text-[#C5A46D] flex items-center justify-center cursor-pointer transition-colors"
               aria-label="Close dish details"
             >
               <X className="w-5 h-5" />
@@ -181,7 +188,7 @@ export const InteractiveMenuSection: React.FC<InteractiveMenuSectionProps> = ({
                 />
               </div>
 
-              <div className="sm:col-span-6 p-5 sm:p-7 flex flex-col justify-between space-y-5">
+              <div className="sm:col-span-6 p-5 sm:p-7 flex flex-col justify-between space-y-5 pb-7 sm:pb-7">
                 <div className="space-y-3">
                   <div className="text-xs tracking-wider text-[#C5A46D] font-medium">
                     {selectedDish.category}
@@ -202,7 +209,7 @@ export const InteractiveMenuSection: React.FC<InteractiveMenuSectionProps> = ({
                     href={RESTAURANT_INFO.links.uberEats}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-4 min-h-[44px] rounded-full bg-[#C5A46D] text-[#141311] text-xs font-semibold tracking-wider hover:bg-[#F2EAE0] transition-colors"
+                    className="touch-press w-full inline-flex items-center justify-center gap-2 py-3.5 px-4 min-h-[46px] rounded-full bg-[#C5A46D] text-[#141311] text-xs font-semibold tracking-wider hover:bg-[#F2EAE0] transition-colors"
                   >
                     <span>Order on Uber Eats</span>
                     <ExternalLink className="w-3.5 h-3.5" />
@@ -216,4 +223,3 @@ export const InteractiveMenuSection: React.FC<InteractiveMenuSectionProps> = ({
     </section>
   );
 };
-

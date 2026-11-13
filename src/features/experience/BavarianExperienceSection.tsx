@@ -5,7 +5,11 @@ import { EXPERIENCE_CHAPTERS } from '../../data/bavarianData';
 export const BavarianExperienceSection: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [dragFraction, setDragFraction] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
   const touchStartXRef = useRef<number | null>(null);
+  const didSwipeRef = useRef<boolean>(false);
+  const pillsContainerRef = useRef<HTMLDivElement | null>(null);
   const total = EXPERIENCE_CHAPTERS.length;
 
   useEffect(() => {
@@ -14,6 +18,18 @@ export const BavarianExperienceSection: React.FC = () => {
     window.addEventListener('resize', checkViewport);
     return () => window.removeEventListener('resize', checkViewport);
   }, []);
+
+  // Keep active chapter pill centered horizontally on mobile without touching vertical scroll
+  useEffect(() => {
+    const container = pillsContainerRef.current;
+    if (!container || !isMobile) return;
+    const activeBtn = container.children[activeIndex] as HTMLElement | undefined;
+    if (activeBtn) {
+      const targetLeft =
+        activeBtn.offsetLeft - container.clientWidth / 2 + activeBtn.clientWidth / 2;
+      container.scrollTo({ left: Math.max(0, targetLeft), behavior: 'smooth' });
+    }
+  }, [activeIndex, isMobile]);
 
   const goPrev = () => {
     setActiveIndex((prev) => (prev - 1 + total) % total);
@@ -25,16 +41,38 @@ export const BavarianExperienceSection: React.FC = () => {
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     touchStartXRef.current = e.touches[0].clientX;
+    didSwipeRef.current = false;
+    setIsDragging(true);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (touchStartXRef.current === null) return;
+    const deltaX = e.touches[0].clientX - touchStartXRef.current;
+    if (Math.abs(deltaX) > 6) {
+      didSwipeRef.current = true;
+    }
+    const normalized = Math.max(-0.85, Math.min(0.85, deltaX / 240));
+    setDragFraction(normalized);
   };
 
   const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
+    setIsDragging(false);
+    setDragFraction(0);
     if (touchStartXRef.current === null) return;
     const deltaX = e.changedTouches[0].clientX - touchStartXRef.current;
     touchStartXRef.current = null;
-    if (Math.abs(deltaX) > 40) {
+    if (Math.abs(deltaX) > 38) {
       if (deltaX < 0) goNext();
       else goPrev();
     }
+  };
+
+  const handleCardSelect = (idx: number) => {
+    if (didSwipeRef.current) {
+      didSwipeRef.current = false;
+      return;
+    }
+    setActiveIndex(idx);
   };
 
   return (
@@ -68,7 +106,7 @@ export const BavarianExperienceSection: React.FC = () => {
             <button
               type="button"
               onClick={goPrev}
-              className="w-11 h-11 rounded-full border border-[#C5A46D]/30 bg-[#1D1A17] text-[#F2EAE0] hover:bg-[#C5A46D] hover:text-[#141311] flex items-center justify-center transition-all duration-300 cursor-pointer"
+              className="touch-press w-11 h-11 rounded-full border border-[#C5A46D]/30 bg-[#1D1A17] text-[#F2EAE0] hover:bg-[#C5A46D] hover:text-[#141311] flex items-center justify-center transition-all duration-300 cursor-pointer"
               aria-label="Previous experience chapter"
             >
               <ChevronLeft className="w-5 h-5" />
@@ -79,7 +117,7 @@ export const BavarianExperienceSection: React.FC = () => {
             <button
               type="button"
               onClick={goNext}
-              className="w-11 h-11 rounded-full border border-[#C5A46D]/30 bg-[#1D1A17] text-[#F2EAE0] hover:bg-[#C5A46D] hover:text-[#141311] flex items-center justify-center transition-all duration-300 cursor-pointer"
+              className="touch-press w-11 h-11 rounded-full border border-[#C5A46D]/30 bg-[#1D1A17] text-[#F2EAE0] hover:bg-[#C5A46D] hover:text-[#141311] flex items-center justify-center transition-all duration-300 cursor-pointer"
               aria-label="Next experience chapter"
             >
               <ChevronRight className="w-5 h-5" />
@@ -87,11 +125,12 @@ export const BavarianExperienceSection: React.FC = () => {
           </div>
         </div>
 
-        {/* 3D Perspective Coverflow Stage */}
+        {/* 3D Perspective Coverflow Stage with Live Swipe Tracking */}
         <div
           onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
-          className="relative h-[340px] sm:h-[460px] lg:h-[500px] w-full flex items-center justify-center perspective-1400 preserve-3d select-none reveal-3d"
+          className="relative h-[340px] sm:h-[460px] lg:h-[500px] w-full flex items-center justify-center perspective-1400 preserve-3d select-none touch-pan-y reveal-3d"
         >
           {EXPERIENCE_CHAPTERS.map((chap, idx) => {
             // Compute circular signed distance in [-2, -1, 0, 1, 2]
@@ -100,28 +139,26 @@ export const BavarianExperienceSection: React.FC = () => {
             if (diff < -total / 2) diff += total;
 
             const isCenter = diff === 0;
-            const translateX = diff * (isMobile ? 28 : 52); // percentage
-            const translateZ = isCenter
-              ? 0
-              : Math.abs(diff) === 1
-                ? isMobile
-                  ? -140
-                  : -210
-                : -340;
-            const rotateY = diff * (isMobile ? -16 : -26);
-            const opacity = isCenter ? 1 : Math.abs(diff) === 1 ? 0.55 : 0.15;
-            const zIndex = 30 - Math.abs(diff) * 10;
+            const liveDiff = diff + dragFraction;
+            const absLiveDiff = Math.abs(liveDiff);
+
+            const translateX = liveDiff * (isMobile ? 28 : 52);
+            const translateZ = -Math.min(2, absLiveDiff) * (isMobile ? 140 : 190);
+            const rotateY = liveDiff * (isMobile ? -16 : -26);
+            const opacity = Math.max(0.15, 1 - absLiveDiff * 0.44);
+            const zIndex = 30 - Math.round(absLiveDiff * 10);
 
             return (
               <div
                 key={chap.id}
-                onClick={() => setActiveIndex(idx)}
+                onClick={() => handleCardSelect(idx)}
                 style={{
                   transform: `translate3d(${translateX}%, 0px, ${translateZ}px) rotateY(${rotateY}deg)`,
                   opacity,
                   zIndex,
-                  transition:
-                    'transform 700ms cubic-bezier(0.16, 1, 0.3, 1), opacity 700ms cubic-bezier(0.16, 1, 0.3, 1)',
+                  transition: isDragging
+                    ? 'none'
+                    : 'transform 620ms cubic-bezier(0.22, 1, 0.36, 1), opacity 550ms cubic-bezier(0.22, 1, 0.36, 1)',
                 }}
                 className={`absolute w-[90%] sm:w-[74%] lg:w-[64%] h-full rounded-3xl overflow-hidden bg-[#1D1A17] border shadow-[0_30px_90px_rgba(0,0,0,0.85)] cursor-pointer preserve-3d ${
                   isCenter ? 'border-[#C5A46D]/55' : 'border-[#C5A46D]/15'
@@ -130,7 +167,7 @@ export const BavarianExperienceSection: React.FC = () => {
                 <img
                   src={chap.image}
                   alt={chap.title}
-                  className="w-full h-full object-cover object-center"
+                  className="w-full h-full object-cover object-center pointer-events-none"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#141311] via-[#141311]/40 to-transparent" />
 
@@ -150,7 +187,7 @@ export const BavarianExperienceSection: React.FC = () => {
                     <img
                       src={chap.secondaryImage}
                       alt={chap.subtitle}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover pointer-events-none"
                     />
                   </div>
                 )}
@@ -170,13 +207,16 @@ export const BavarianExperienceSection: React.FC = () => {
         </div>
 
         {/* Minimal Chapter Indicator Pills — Horizontally Scrollable on Mobile */}
-        <div className="mt-6 sm:mt-8 flex sm:flex-wrap items-center justify-start sm:justify-center gap-2 overflow-x-auto no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0 pb-1">
+        <div
+          ref={pillsContainerRef}
+          className="mt-6 sm:mt-8 flex sm:flex-wrap items-center justify-start sm:justify-center gap-2 overflow-x-auto no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0 pb-1"
+        >
           {EXPERIENCE_CHAPTERS.map((chap, idx) => (
             <button
               key={chap.id}
               type="button"
               onClick={() => setActiveIndex(idx)}
-              className={`shrink-0 px-4 py-2 min-h-[40px] rounded-full text-xs transition-all duration-300 cursor-pointer ${
+              className={`touch-press shrink-0 px-4 py-2 min-h-[40px] rounded-full text-xs transition-all duration-300 cursor-pointer ${
                 idx === activeIndex
                   ? 'bg-[#C5A46D] text-[#141311] font-semibold shadow-[0_0_20px_rgba(197,164,109,0.35)]'
                   : 'bg-[#1D1A17] text-[#9E9589] border border-[#C5A46D]/15 hover:text-[#F2EAE0]'
@@ -190,4 +230,3 @@ export const BavarianExperienceSection: React.FC = () => {
     </section>
   );
 };
-

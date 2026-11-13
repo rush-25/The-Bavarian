@@ -9,8 +9,9 @@ export interface SignatureExperienceSectionProps {
 
 const TiltCard: React.FC<{
   card: SignatureCard;
+  index: number;
   onSelect: (cat: MenuCategory) => void;
-}> = ({ card, onSelect }) => {
+}> = ({ card, index, onSelect }) => {
   const [tilt, setTilt] = useState({ rx: 0, ry: 0, glowX: 50, glowY: 50, hovered: false });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -43,8 +44,9 @@ const TiltCard: React.FC<{
           tilt.hovered ? '1.02, 1.02, 1.02' : '1, 1, 1'
         })`,
         transition: 'transform 260ms cubic-bezier(0.16, 1, 0.3, 1)',
+        transitionDelay: `${index * 60}ms`,
       }}
-      className="group relative rounded-3xl overflow-hidden bg-[#1D1A17] border border-[#C5A46D]/20 hover:border-[#C5A46D]/70 shadow-[0_25px_65px_rgba(0,0,0,0.75)] cursor-pointer flex flex-col justify-between min-h-[340px] sm:min-h-[400px] lg:min-h-[440px] preserve-3d reveal-3d"
+      className="touch-press group relative rounded-3xl overflow-hidden bg-[#1D1A17] border border-[#C5A46D]/20 hover:border-[#C5A46D]/70 active:border-[#C5A46D]/70 shadow-[0_25px_65px_rgba(0,0,0,0.75)] cursor-pointer flex flex-col justify-between min-h-[340px] sm:min-h-[400px] lg:min-h-[440px] preserve-3d reveal-3d"
     >
       {/* Full-bleed Photographic Backdrop */}
       <div className="absolute inset-0 z-0 overflow-hidden">
@@ -52,7 +54,7 @@ const TiltCard: React.FC<{
           src={card.image}
           alt={card.title}
           loading="lazy"
-          className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-110"
+          className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-110 group-active:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#141311] via-[#141311]/45 to-transparent" />
         {/* Interactive 3D specular spotlight */}
@@ -70,7 +72,7 @@ const TiltCard: React.FC<{
         className="relative z-10 p-5 sm:p-6 flex items-center justify-between"
       >
         <span className="font-serif-display text-lg text-[#C5A46D]/90">{card.number}</span>
-        <span className="w-10 h-10 rounded-full bg-[#141311]/75 backdrop-blur-md border border-[#C5A46D]/35 flex items-center justify-center text-[#F2EAE0] group-hover:bg-[#C5A46D] group-hover:text-[#141311] transition-all duration-300 group-hover:scale-110">
+        <span className="w-10 h-10 rounded-full bg-[#141311]/75 backdrop-blur-md border border-[#C5A46D]/35 flex items-center justify-center text-[#F2EAE0] group-hover:bg-[#C5A46D] group-hover:text-[#141311] group-active:bg-[#C5A46D] group-active:text-[#141311] transition-all duration-300 group-hover:scale-110">
           <ArrowUpRight className="w-4 h-4" />
         </span>
       </div>
@@ -118,12 +120,11 @@ export const SignatureExperienceSection: React.FC<SignatureExperienceSectionProp
 
         {/* Four 3D Perspective Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 sm:gap-6">
-          {SIGNATURE_CARDS.map((card) => (
-            <TiltCard key={card.id} card={card} onSelect={onSelectCategory} />
+          {SIGNATURE_CARDS.map((card, idx) => (
+            <TiltCard key={card.id} card={card} index={idx} onSelect={onSelectCategory} />
           ))}
         </div>
       </div>
     </section>
   );
 };
-

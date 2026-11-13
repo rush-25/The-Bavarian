@@ -4,17 +4,19 @@ import { formatLkrPrice } from '../../data/menuData';
 
 export interface MenuItemProps {
   item: MenuItemType;
+  index?: number;
   onClick: () => void;
 }
 
-export const MenuItem: React.FC<MenuItemProps> = ({ item, onClick }) => {
+export const MenuItem: React.FC<MenuItemProps> = ({ item, index = 0, onClick }) => {
   const priceString = formatLkrPrice(item);
   const hasVerifiedPrice = typeof item.priceLkr === 'number';
 
   return (
     <article
       onClick={onClick}
-      className="group relative rounded-3xl overflow-hidden bg-[#141311] border border-[#C5A46D]/15 hover:border-[#C5A46D]/60 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] sm:hover:[transform:perspective(900px)_translateY(-6px)_rotateX(2.5deg)] shadow-[0_18px_45px_rgba(0,0,0,0.55)] cursor-pointer"
+      style={{ animationDelay: `${Math.min(index, 8) * 35}ms` }}
+      className="animate-card-enter touch-press group relative rounded-3xl overflow-hidden bg-[#141311] border border-[#C5A46D]/15 hover:border-[#C5A46D]/60 active:border-[#C5A46D]/60 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] sm:hover:[transform:perspective(900px)_translateY(-6px)_rotateX(2.5deg)] shadow-[0_18px_45px_rgba(0,0,0,0.55)] cursor-pointer"
     >
       {/* Dish Image Container */}
       <div className="relative h-52 sm:h-56 w-full overflow-hidden bg-[#1D1A17]">
@@ -22,7 +24,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({ item, onClick }) => {
           src={item.image}
           alt={item.name}
           loading="lazy"
-          className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-108"
+          className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-108 group-active:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#141311] via-transparent to-transparent" />
 
@@ -55,4 +57,3 @@ export const MenuItem: React.FC<MenuItemProps> = ({ item, onClick }) => {
     </article>
   );
 };
-

@@ -40,7 +40,10 @@ export const StorySection: React.FC = () => {
   const [activeIdx, setActiveIdx] = useState<number>(0);
   const [tilt, setTilt] = useState({ rx: 0, ry: 0 });
   const [isCompactViewport, setIsCompactViewport] = useState(false);
+  const [dragX, setDragX] = useState<number>(0);
+  const [isDragging, setIsDragging] = useState<boolean>(false);
   const touchStartXRef = useRef<number | null>(null);
+  const didSwipeRef = useRef<boolean>(false);
 
   useEffect(() => {
     const checkViewport = () => {
@@ -76,16 +79,39 @@ export const StorySection: React.FC = () => {
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     touchStartXRef.current = e.touches[0].clientX;
+    didSwipeRef.current = false;
+    setIsDragging(true);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (touchStartXRef.current === null) return;
+    const deltaX = e.touches[0].clientX - touchStartXRef.current;
+    if (Math.abs(deltaX) > 6) {
+      didSwipeRef.current = true;
+    }
+    // Clamp live drag offset so the deck feels elastic and weighted
+    const clamped = Math.max(-130, Math.min(130, deltaX * 0.72));
+    setDragX(clamped);
   };
 
   const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
+    setIsDragging(false);
+    setDragX(0);
     if (touchStartXRef.current === null) return;
     const deltaX = e.changedTouches[0].clientX - touchStartXRef.current;
     touchStartXRef.current = null;
-    if (Math.abs(deltaX) > 40) {
+    if (Math.abs(deltaX) > 38) {
       if (deltaX < 0) cycleNext();
       else cyclePrev();
     }
+  };
+
+  const handleCardClick = () => {
+    if (didSwipeRef.current) {
+      didSwipeRef.current = false;
+      return;
+    }
+    cycleNext();
   };
 
   return (
@@ -116,7 +142,7 @@ export const StorySection: React.FC = () => {
 
             {/* Three Minimalist Pillars — Responsive 1-col on narrow mobile, 3-col on sm+ */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-3.5 pt-1">
-              <div className="p-3.5 sm:p-4 rounded-2xl bg-[#141311]/80 border border-[#C5A46D]/15 hover:border-[#C5A46D]/50 transition-all duration-300 hover:-translate-y-1 flex sm:block items-center gap-3.5">
+              <div className="touch-press p-3.5 sm:p-4 rounded-2xl bg-[#141311]/80 border border-[#C5A46D]/15 hover:border-[#C5A46D]/50 transition-all duration-300 sm:hover:-translate-y-1 flex sm:block items-center gap-3.5">
                 <div className="w-9 h-9 rounded-xl bg-[#1D1A17] border border-[#C5A46D]/20 flex items-center justify-center shrink-0 sm:mb-2.5">
                   <UtensilsCrossed className="w-4 h-4 text-[#C5A46D]" />
                 </div>
@@ -126,7 +152,7 @@ export const StorySection: React.FC = () => {
                 </div>
               </div>
 
-              <div className="p-3.5 sm:p-4 rounded-2xl bg-[#141311]/80 border border-[#C5A46D]/15 hover:border-[#C5A46D]/50 transition-all duration-300 hover:-translate-y-1 flex sm:block items-center gap-3.5">
+              <div className="touch-press p-3.5 sm:p-4 rounded-2xl bg-[#141311]/80 border border-[#C5A46D]/15 hover:border-[#C5A46D]/50 transition-all duration-300 sm:hover:-translate-y-1 flex sm:block items-center gap-3.5">
                 <div className="w-9 h-9 rounded-xl bg-[#1D1A17] border border-[#C5A46D]/20 flex items-center justify-center shrink-0 sm:mb-2.5">
                   <Beer className="w-4 h-4 text-[#C5A46D]" />
                 </div>
@@ -136,7 +162,7 @@ export const StorySection: React.FC = () => {
                 </div>
               </div>
 
-              <div className="p-3.5 sm:p-4 rounded-2xl bg-[#141311]/80 border border-[#C5A46D]/15 hover:border-[#C5A46D]/50 transition-all duration-300 hover:-translate-y-1 flex sm:block items-center gap-3.5">
+              <div className="touch-press p-3.5 sm:p-4 rounded-2xl bg-[#141311]/80 border border-[#C5A46D]/15 hover:border-[#C5A46D]/50 transition-all duration-300 sm:hover:-translate-y-1 flex sm:block items-center gap-3.5">
                 <div className="w-9 h-9 rounded-xl bg-[#1D1A17] border border-[#C5A46D]/20 flex items-center justify-center shrink-0 sm:mb-2.5">
                   <Flame className="w-4 h-4 text-[#C5A46D]" />
                 </div>
@@ -159,72 +185,81 @@ export const StorySection: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: Interactive 3D Stacked Photo Deck */}
+          {/* Right Column: Interactive 3D Stacked Photo Deck with Live Finger Tracking */}
           <div className="lg:col-span-6 relative reveal-3d">
             <div
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
               onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}
-              onClick={cycleNext}
+              onClick={handleCardClick}
               style={{
                 transform: `perspective(1200px) rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg)`,
                 transition: 'transform 260ms cubic-bezier(0.16, 1, 0.3, 1)',
               }}
-              className="relative h-[340px] sm:h-[460px] w-[92%] sm:w-full max-w-lg mx-auto preserve-3d cursor-pointer select-none"
+              className="relative h-[340px] sm:h-[460px] w-[92%] sm:w-full max-w-lg mx-auto preserve-3d cursor-pointer select-none touch-pan-y"
               title="Tap or swipe to cycle 3D photo deck"
             >
               {SLIDES.map((slide, index) => {
                 const offset = (index - activeIdx + SLIDES.length) % SLIDES.length;
-                const translateZ = offset === 0 ? 0 : offset === 1 ? -65 : -130;
-                const translateX =
-                  offset === 0
-                    ? 0
-                    : offset === 1
-                      ? isCompactViewport
-                        ? 12
-                        : 26
-                      : isCompactViewport
-                        ? 22
-                        : 48;
-                const translateY =
-                  offset === 0
-                    ? 0
-                    : offset === 1
-                      ? isCompactViewport
-                        ? -8
-                        : -14
-                      : isCompactViewport
-                        ? -16
-                        : -28;
-                const rotateZ =
-                  offset === 0
-                    ? 0
-                    : offset === 1
-                      ? isCompactViewport
-                        ? 2
-                        : 3.5
-                      : isCompactViewport
-                        ? 4
-                        : 7;
-                const opacity = offset === 0 ? 1 : offset === 1 ? 0.65 : 0.35;
+                const isFront = offset === 0;
+                const dragRatio = Math.min(1, Math.abs(dragX) / 130);
+
+                const baseTranslateZ = isFront ? 0 : offset === 1 ? -65 : -130;
+                const translateZ = isFront
+                  ? -dragRatio * 20
+                  : baseTranslateZ + dragRatio * 30;
+
+                const baseTranslateX = isFront
+                  ? 0
+                  : offset === 1
+                    ? isCompactViewport
+                      ? 12
+                      : 26
+                    : isCompactViewport
+                      ? 22
+                      : 48;
+                const translateX = isFront ? baseTranslateX + dragX : baseTranslateX - dragX * 0.12;
+
+                const translateY = isFront
+                  ? Math.abs(dragX) * 0.05
+                  : offset === 1
+                    ? (isCompactViewport ? -8 : -14) + dragRatio * 4
+                    : isCompactViewport
+                      ? -16
+                      : -28;
+
+                const rotateZ = isFront
+                  ? dragX * 0.045
+                  : offset === 1
+                    ? isCompactViewport
+                      ? 2
+                      : 3.5
+                    : isCompactViewport
+                      ? 4
+                      : 7;
+
+                const rotateY = isFront ? dragX * 0.08 : 0;
+                const opacity = isFront ? Math.max(0.75, 1 - dragRatio * 0.25) : offset === 1 ? 0.65 + dragRatio * 0.2 : 0.35;
 
                 return (
                   <div
                     key={slide.key}
                     style={{
-                      transform: `translate3d(${translateX}px, ${translateY}px, ${translateZ}px) rotateZ(${rotateZ}deg)`,
+                      transform: `translate3d(${translateX}px, ${translateY}px, ${translateZ}px) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`,
                       opacity,
                       zIndex: 30 - offset * 10,
-                      transition:
-                        'transform 650ms cubic-bezier(0.16, 1, 0.3, 1), opacity 650ms cubic-bezier(0.16, 1, 0.3, 1)',
+                      transition: isDragging
+                        ? 'none'
+                        : 'transform 580ms cubic-bezier(0.22, 1, 0.36, 1), opacity 520ms cubic-bezier(0.22, 1, 0.36, 1)',
                     }}
                     className="absolute inset-0 rounded-3xl overflow-hidden border border-[#C5A46D]/35 bg-[#141311] shadow-[0_30px_80px_rgba(0,0,0,0.85)]"
                   >
                     <img
                       src={slide.src}
                       alt={slide.title}
-                      className="w-full h-full object-cover object-center"
+                      className="w-full h-full object-cover object-center pointer-events-none"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#141311]/92 via-transparent to-transparent" />
 
@@ -255,7 +290,7 @@ export const StorySection: React.FC = () => {
                   key={slide.key}
                   type="button"
                   onClick={() => setActiveIdx(idx)}
-                  className={`px-3.5 sm:px-4 py-2 min-h-[40px] rounded-full text-xs transition-all duration-300 cursor-pointer ${
+                  className={`touch-press px-3.5 sm:px-4 py-2 min-h-[40px] rounded-full text-xs transition-all duration-300 cursor-pointer ${
                     activeIdx === idx
                       ? 'bg-[#C5A46D] text-[#141311] font-semibold shadow-[0_0_20px_rgba(197,164,109,0.35)]'
                       : 'bg-[#141311]/70 text-[#9E9589] border border-[#C5A46D]/20 hover:text-[#F2EAE0]'
@@ -272,4 +307,3 @@ export const StorySection: React.FC = () => {
     </section>
   );
 };
-
